@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const salesPipelineController = require('../../controllers/crm/salesPipelineController');
-const { verifyToken } = require('../../middleware/authMiddleware');
+const salesPipelineController = require('../controllers/salesPipelineController');
+const { verifyToken } = require('../../../../api-gateway/src/middleware/authMiddleware');
 
 /**
  * @swagger

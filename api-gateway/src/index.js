@@ -7,9 +7,9 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 const rateLimit = require("express-rate-limit");
 const jwt = require("jsonwebtoken");
-const { verifyToken } = require('./middleware/authMiddleware');
-const { swaggerUi, swaggerSpec } = require('../swagger/swaggerConfig');
-const dotenv = require('dotenv');
+const { verifyToken } = require("./middleware/authMiddleware");
+const { swaggerUi, swaggerSpec } = require("../swagger/swaggerConfig");
+const dotenv = require("dotenv");
 
 dotenv.config();
 
@@ -39,8 +39,28 @@ const authenticateToken = (req, res, next) => {
     "/api/auth/login",
     "/api/auth/register",
     "/api/auth/forgot-password",
-    "/api-docs",       
-    "/swagger.json", 
+    "/api/crm/leads",
+    "/api/crm/sales-pipelines",
+    "/api/crm/prospects",
+    "/api/crm/forms",
+    "/api/crm/form-fields",
+    "/api/assets",
+    "/api/sub-assets",
+    "/api/asset-transfers",
+    "/api/asset-disposals",
+    "/api/asset-categories",
+    "/api/depreciation-schedules",
+    "/api/manufacturers",
+    "/api/asset-subcategories",
+    "/api/asset-capacities",
+    "/api/asset-classifications",
+    "/api/locations",
+    "/api/custodians",
+    "/api/costcenters",
+    "/api/suppliers",
+    "/api/model-assets",
+    "/api-docs",
+    "/swagger.json",
   ];
 
   if (publicRoutes.some((route) => req.path.startsWith(route))) {
@@ -87,7 +107,7 @@ const proxy = (target) =>
   });
 
 // File Upload (If applicable)
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // ─── Route Mappings ────────────────────────────────────────────────────────
 
@@ -142,7 +162,11 @@ app.use("/api/contracts", proxy(SERVICES.HR));
 app.use("/api/gatepass", proxy(SERVICES.HR));
 
 // CRM
-app.use("/api/crm", proxy(SERVICES.CRM));
+app.use("/api/crm/leads", proxy(SERVICES.CRM));
+app.use("/api/crm/sales-pipelines", proxy(SERVICES.CRM));
+app.use("/api/crm/prospects", proxy(SERVICES.CRM));
+app.use("/api/crm/forms", proxy(SERVICES.CRM));
+app.use("/api/crm/form-fields", proxy(SERVICES.CRM));
 
 // Fleet
 app.use("/api/schedules", proxy(SERVICES.FLEET));
@@ -167,17 +191,17 @@ app.use("/api/asset-disposals", proxy(SERVICES.ASSETS));
 app.use("/api/asset-categories", proxy(SERVICES.ASSETS));
 app.use("/api/depreciation-schedules", proxy(SERVICES.ASSETS));
 app.use("/api/manufacturers", proxy(SERVICES.ASSETS));
-app.use('/api/asset-subcategories', proxy(SERVICES.ASSETS));
-app.use('/api/asset-capacities', proxy(SERVICES.ASSETS));
-app.use('/api/asset-classifications', proxy(SERVICES.ASSETS));
-app.use('/api/locations', proxy(SERVICES.ASSETS));
-app.use('/api/custodians', proxy(SERVICES.ASSETS));
-app.use('/api/costcenters', proxy(SERVICES.ASSETS));
-app.use('/api/suppliers', proxy(SERVICES.ASSETS));
-app.use('/api/model-assets', proxy(SERVICES.ASSETS));
+app.use("/api/asset-subcategories", proxy(SERVICES.ASSETS));
+app.use("/api/asset-capacities", proxy(SERVICES.ASSETS));
+app.use("/api/asset-classifications", proxy(SERVICES.ASSETS));
+app.use("/api/locations", proxy(SERVICES.ASSETS));
+app.use("/api/custodians", proxy(SERVICES.ASSETS));
+app.use("/api/costcenters", proxy(SERVICES.ASSETS));
+app.use("/api/suppliers", proxy(SERVICES.ASSETS));
+app.use("/api/model-assets", proxy(SERVICES.ASSETS));
 
 // Swagger Documentation
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Health Check
 app.get("/health", (req, res) => {
