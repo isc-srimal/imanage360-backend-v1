@@ -1,0 +1,17 @@
+{
+  "name": "imanage360-backend-v1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently --names \"GATEWAY,USER,HR,CRM,FLEET,ASSETS\" --prefix-colors \"bgBlue,bgGreen,bgYellow,bgRed,bgMagenta,bgCyan,bgWhite,bgGray\" \"npm run dev --prefix api-gateway\" \"npm run dev --prefix services/user-management-service\" \"npm run dev --prefix services/hr-service\" \"npm run dev --prefix services/sales-crm-service\" \"npm run dev --prefix services/fleet-management-service\" \"npm run dev --prefix services/fixed-assets-service\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

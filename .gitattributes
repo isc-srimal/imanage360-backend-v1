@@ -1,0 +1,10 @@
+# Force LF line endings for all text files
+* text=auto
+
+# Binary files
+*.png binary
+*.jpg binary
+*.gif binary
+
+# Exclude JSON from line-ending normalization
+*.json text eol=lf

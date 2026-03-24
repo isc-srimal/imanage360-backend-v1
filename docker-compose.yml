@@ -1,0 +1,179 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+
+  # ── Databases ──────────────────────────────────────────────────────────────
+  mysql-user:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: user_db
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_user_data:/var/lib/mysql
+    networks:
+      - imanage360
+
+  mysql-hr:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: hr_db
+    ports:
+      - "3308:3306"
+    volumes:
+      - mysql_hr_data:/var/lib/mysql
+    networks:
+      - imanage360
+
+  mysql-sales-crm:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: sales_crm_db
+    ports:
+      - "3309:3306"
+    volumes:
+      - mysql_crm_data:/var/lib/mysql
+    networks:
+      - imanage360
+
+  mysql-fleet-management:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: fleet_management_db
+    ports:
+      - "3310:3306"
+    volumes:
+      - mysql_fleet_data:/var/lib/mysql
+    networks:
+      - imanage360
+
+  mysql-fixed-assets:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: fixed_assets_db
+    ports:
+      - "3311:3306"
+    volumes:
+      - mysql_assets_data:/var/lib/mysql
+    networks:
+      - imanage360
+
+  # ── Services ───────────────────────────────────────────────────────────────
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "4000:4000"
+    environment:
+      - USER_SERVICE_URL=http://user-management-service:4001
+      - HR_SERVICE_URL=http://hr-service:4002
+      - CRM_SERVICE_URL=http://sales-crm-service:4003
+      - FLEET_SERVICE_URL=http://fleet-management-service:4004
+      - ASSETS_SERVICE_URL=http://fixed-assets-service:4005
+      - JWT_SECRET=A5dfg+74Jgfkjng-9j34klJJK!bh34kjfdS4#vytZjk94qwv-234klhl5bCzxlwpjp
+      - FRONTEND_URL=http://localhost:3000
+    depends_on:
+      - user-management-service
+      - hr-service
+      - sales-crm-service
+      - fleet-management-service
+      - fixed-assets-service
+    networks:
+      - imanage360
+
+  user-management-service:
+    build: ./services/user-management-service
+    ports:
+      - "4001:4001"
+    environment:
+      - PORT=4001
+      - DB_HOST=mysql-user
+      - DB_PORT=3306
+      - DB_NAME=user_db
+      - DB_USER=root
+      - DB_PASSWORD=1996
+      - JWT_SECRET=A5dfg+74Jgfkjng-9j34klJJK!bh34kjfdS4#vytZjk94qwv-234klhl5bCzxlwpjp
+    depends_on:
+      - mysql-user
+    networks:
+      - imanage360
+
+  hr-service:
+    build: ./services/hr-service
+    ports:
+      - "4002:4002"
+    environment:
+      - PORT=4002
+      - DB_HOST=mysql-hr
+      - DB_PORT=3306
+      - DB_NAME=hr_db
+      - DB_USER=root
+      - DB_PASSWORD=1996
+    depends_on:
+      - mysql-hr
+    networks:
+      - imanage360
+
+  sales-crm-service:
+    build: ./services/sales-crm-service
+    ports:
+      - "4003:4003"
+    environment:
+      - PORT=4003
+      - DB_HOST=mysql-sales-crm
+      - DB_PORT=3306
+      - DB_NAME=sales_crm_db
+      - DB_USER=root
+      - DB_PASSWORD=1996
+    depends_on:
+      - mysql-sales-crm
+    networks:
+      - imanage360
+
+  fleet-management-service:
+    build: ./services/fleet-management-service
+    ports:
+      - "4004:4004"
+    environment:
+      - PORT=4004
+      - DB_HOST=mysql-fleet-management
+      - DB_PORT=3306
+      - DB_NAME=fleet_management_db
+      - DB_USER=root
+      - DB_PASSWORD=1996
+    depends_on:
+      - mysql-fleet-management
+    networks:
+      - imanage360
+
+  fixed-assets-service:
+    build: ./services/fixed-assets-service
+    ports:
+      - "4005:4005"
+    environment:
+      - PORT=4005
+      - DB_HOST=mysql-fixed-assets
+      - DB_PORT=3306
+      - DB_NAME=fixed_assets_db
+      - DB_USER=root
+      - DB_PASSWORD=1996
+    depends_on:
+      - mysql-fixed-assets
+    networks:
+      - imanage360
+
+volumes:
+  mysql_user_data:
+  mysql_hr_data:
+  mysql_crm_data:
+  mysql_fleet_data:
+  mysql_assets_data:
+
+networks:
+  imanage360:
+    driver: bridge
