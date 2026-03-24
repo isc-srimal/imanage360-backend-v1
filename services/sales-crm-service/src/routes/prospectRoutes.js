@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const prospectController = require('../../controllers/crm/prospectController');
-const { verifyToken } = require('../../middleware/authMiddleware');
+const prospectController = require('../controllers/prospectController');
+const { verifyToken } = require('../../../../api-gateway/src/middleware/authMiddleware');
 
 /**
  * @swagger
