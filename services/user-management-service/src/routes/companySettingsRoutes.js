@@ -1,6 +1,6 @@
 const express = require('express');
-const {getCompanyDetails, updateCompanyDetails } = require('../../controllers/user/companySettingController');
-const { verifyToken } = require('../../middleware/authMiddleware');
+const {getCompanyDetails, updateCompanyDetails } = require('../controllers/companySettingController');
+const { verifyToken } = require('../../../../api-gateway/src/middleware/authMiddleware');
 const router = express.Router();
 
 /**

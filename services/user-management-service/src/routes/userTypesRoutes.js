@@ -7,8 +7,8 @@ const {
   getAllUserTypes,
   exportUserTypesToCSV,
   exportUserTypesToPDF,
-} = require("../../controllers/user-security-management/userTypesController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/userTypesController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

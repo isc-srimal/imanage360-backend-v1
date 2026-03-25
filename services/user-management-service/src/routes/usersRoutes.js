@@ -8,8 +8,8 @@ const {
   filterUsers,
   exportFilteredUsersToCSV,
   exportFilteredUsersToPDF,
-} = require("../../controllers/user-security-management/usersController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/usersController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 
