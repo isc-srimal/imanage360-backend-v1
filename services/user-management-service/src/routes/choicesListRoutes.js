@@ -1,6 +1,6 @@
 const express = require('express');
 const { getUserRolesList, getAllTextFieldTypeList } = require('../controllers/choicesListController');
-const { verifyToken } = require('../middleware/authMiddleware');
+const { verifyToken } = require('../../../../api-gateway/src/middleware/authMiddleware');
 const router = express.Router();
 
 /**

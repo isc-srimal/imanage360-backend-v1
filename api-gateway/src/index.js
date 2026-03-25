@@ -17,12 +17,29 @@ const app = express();
 
 app.use(helmet());
 app.use(morgan("combined"));
+// app.use(
+//   cors({
+//     origin: [
+//       process.env.FRONTEND_URL,
+//       process.env.BACKEND_URL || "http://localhost:4000", // Allow Swagger UI
+//       process.env.USER_SERVICE_URL || "http://localhost:4001",
+//       process.env.HR_SERVICE_URL || "http://localhost:4002",
+//       process.env.CRM_SERVICE_URL || "http://localhost:4003",
+//       process.env.FLEET_SERVICE_URL || "http://localhost:4004",
+//       process.env.ASSETS_SERVICE_URL || "http://localhost:4005",
+//     ],
+//     methods: "GET,POST,PUT,DELETE,PATCH",
+//     credentials: true,
+//   }),
+// );
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
+    origin: (origin, callback) => {
+      callback(null, true); // allow all origins
+    },
     methods: "GET,POST,PUT,DELETE,PATCH",
     credentials: true,
-  }),
+  })
 );
 
 // Rate Limiting
@@ -36,9 +53,22 @@ app.use(limiter);
 const authenticateToken = (req, res, next) => {
   // Public routes - skip auth
   const publicRoutes = [
-    "/api/auth/login",
-    "/api/auth/register",
-    "/api/auth/forgot-password",
+    "/api/auth",
+    "/api/manageUser",
+    "/api/manageCompany",
+    "/api/users",
+    "/api/user-types",
+    "/api/user-groups",
+    "/api/roles",
+    "/api/permissions",
+    "/api/password-rules",
+    "/api/role-permissions",
+    "/api/choicesList",
+    "/api/organizations",
+    "/api/tenants",
+    "/api/branches",
+    "/api/modules",
+    "/api/subscription-plans",
     "/api/crm/leads",
     "/api/crm/sales-pipelines",
     "/api/crm/prospects",
@@ -85,12 +115,11 @@ app.use(authenticateToken);
 
 // ─── Service URLs ──────────────────────────────────────────────────────────
 const SERVICES = {
-  USER: process.env.USER_SERVICE_URL || "http://user-management-service:4001",
-  HR: process.env.HR_SERVICE_URL || "http://hr-service:4002",
-  CRM: process.env.CRM_SERVICE_URL || "http://sales-crm-service:4003",
-  FLEET:
-    process.env.FLEET_SERVICE_URL || "http://fleet-management-service:4004",
-  ASSETS: process.env.ASSETS_SERVICE_URL || "http://fixed-assets-service:4005",
+  USER: process.env.USER_SERVICE_URL || "http://localhost:4001",
+  HR: process.env.HR_SERVICE_URL || "http://localhost:4002",
+  CRM: process.env.CRM_SERVICE_URL || "http://localhost:4003",
+  FLEET: process.env.FLEET_SERVICE_URL || "http://localhost:4004",
+  ASSETS: process.env.ASSETS_SERVICE_URL || "http://localhost:4005",
 };
 
 // ─── Proxy Helper ──────────────────────────────────────────────────────────

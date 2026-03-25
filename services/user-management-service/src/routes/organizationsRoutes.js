@@ -7,8 +7,8 @@ const {
   getAllOrganizations,
   exportOrganizationsToCSV,
   exportOrganizationsToPDF,
-} = require("../../controllers/subscription/organizationsController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/organizationsController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

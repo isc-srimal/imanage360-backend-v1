@@ -8,8 +8,8 @@ const {
   getRolePermissionsByUserId,
   exportRolePermissionsToCSV,
   exportRolePermissionsToPDF,
-} = require("../../controllers/user-security-management/rolePermissionsController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/rolePermissionsController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

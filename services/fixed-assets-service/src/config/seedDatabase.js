@@ -15,6 +15,7 @@ const SupplierID = require("../models/SupplierIDModel");
 const SubAsset = require("../models/SubAssetModel");
 const ModelAssetModel = require("../models/ModelAssetModel");
 const ManufacturerModel = require("../models/ManufacturerModel");
+const Department = require("../../../hr-service/src/models/DepartmentModel");
 
 const seedDatabase = async (syncOption = { alter: true }) => {
   try {
@@ -23,6 +24,47 @@ const seedDatabase = async (syncOption = { alter: true }) => {
     console.log(`Database synced with ${JSON.stringify(syncOption)}`);
 
     //-----------------------------------------------------Fixed Assets Module Seeds------------------------------------------------------------
+
+
+    // Seed Department Data
+    const departments = [
+      {
+        departmentNo: 101,
+        departmentName: "IT Department",
+        departmentDescription:
+          "Responsible for managing all IT infrastructure and software development",
+        departmentHead: "John Doe",
+        location: "Headquarters, Colombo",
+        createdBy: "admin",
+        status: "Active",
+        staffName: "Jane Smith",
+      },
+      {
+        departmentNo: 102,
+        departmentName: "HR Department",
+        departmentDescription:
+          "Handles all human resources tasks including recruitment, payroll, and employee relations",
+        departmentHead: "Mary Johnson",
+        location: "Headquarters, Colombo",
+        createdBy: "admin",
+        status: "Active",
+        staffName: "David Lee",
+      },
+      {
+        departmentNo: 103,
+        departmentName: "Sales Department",
+        departmentDescription:
+          "Handles sales and customer relationship management",
+        departmentHead: "Robert Brown",
+        location: "Headquarters, Colombo",
+        createdBy: "admin",
+        status: "Active",
+        staffName: "Emily Davis",
+      },
+    ];
+
+    await Department.bulkCreate(departments, { ignoreDuplicates: true });
+    console.log("Departments successfully seeded!");
 
     // Seed AssetCategoryModel
     const categories = await AssetCategory.bulkCreate(
@@ -273,7 +315,7 @@ const seedDatabase = async (syncOption = { alter: true }) => {
           capacity_id: capacities[0].capacity_id,
           location_name: locations[0].location_name,
           cost_center_name: costCenters[0].cost_center_name,
-          departmentName: "IT Department",
+          departmentName: departments[0].departmentName,
           custodian_name: custodians[0].custodian_name,
           acquisition_date: "2025-06-24",
           acquisition_cost: 1299.99,
@@ -288,8 +330,8 @@ const seedDatabase = async (syncOption = { alter: true }) => {
           yearly_depreciation: 3000.0,
           is_depreciation_calculated: true,
           status: "active",
-          barcode: "BC-LAP121121221",
-          rfid_tag: "RFID-LAP121121221",
+          barcode: `BC-LAP-${Math.random().toString(36).slice(2, 8)}`,
+          rfid_tag: `RFID-LAP-${Math.random().toString(36).slice(2, 8)}`,
           journal_entry_id: "JE-20250624-001",
           photo_attachments: null,
           document_attachments: null,
@@ -314,7 +356,7 @@ const seedDatabase = async (syncOption = { alter: true }) => {
           capacity_id: capacities[0].capacity_id,
           location_name: locations[0].location_name,
           cost_center_name: costCenters[0].cost_center_name,
-          departmentName: "IT Department",
+          departmentName: departments[0].departmentName,
           custodian_name: custodians[0].custodian_name,
           acquisition_date: "2025-06-24",
           acquisition_cost: 1299.99,
@@ -329,8 +371,8 @@ const seedDatabase = async (syncOption = { alter: true }) => {
           yearly_depreciation: 3000.0,
           is_depreciation_calculated: true,
           status: "active",
-          barcode: "BC-LAP121121221",
-          rfid_tag: "RFID-LAP121121221",
+          barcode: `BC-LAP-${Math.random().toString(36).slice(2, 8)}`,
+          rfid_tag: `RFID-LAP-${Math.random().toString(36).slice(2, 8)}`,
           journal_entry_id: "JE-20250624-001",
           photo_attachments: null,
           document_attachments: null,
@@ -355,7 +397,7 @@ const seedDatabase = async (syncOption = { alter: true }) => {
           capacity_id: capacities[0].capacity_id,
           location_name: locations[0].location_name,
           cost_center_name: costCenters[0].cost_center_name,
-          departmentName: "IT Department",
+          departmentName: departments[0].departmentName,
           custodian_name: custodians[0].custodian_name,
           acquisition_date: "2025-06-24",
           acquisition_cost: 1299.99,
@@ -370,8 +412,8 @@ const seedDatabase = async (syncOption = { alter: true }) => {
           yearly_depreciation: 3000.0,
           is_depreciation_calculated: true,
           status: "active",
-          barcode: "BC-LAP121121221",
-          rfid_tag: "RFID-LAP121121221",
+          barcode: `BC-LAP-${Math.random().toString(36).slice(2, 8)}`,
+          rfid_tag: `RFID-LAP-${Math.random().toString(36).slice(2, 8)}`,
           journal_entry_id: "JE-20250624-001",
           photo_attachments: null,
           document_attachments: null,
@@ -396,7 +438,7 @@ const seedDatabase = async (syncOption = { alter: true }) => {
           capacity_id: capacities[0].capacity_id,
           location_name: locations[0].location_name,
           cost_center_name: costCenters[0].cost_center_name,
-          departmentName: "IT Department",
+          departmentName: departments[0].departmentName,
           custodian_name: custodians[0].custodian_name,
           acquisition_date: "2025-06-24",
           acquisition_cost: 1299.99,
@@ -411,8 +453,8 @@ const seedDatabase = async (syncOption = { alter: true }) => {
           yearly_depreciation: 3000.0,
           is_depreciation_calculated: true,
           status: "active",
-          barcode: "BC-LAP121121221",
-          rfid_tag: "RFID-LAP121121221",
+          barcode: `BC-LAP-${Math.random().toString(36).slice(2, 8)}`,
+          rfid_tag: `RFID-LAP-${Math.random().toString(36).slice(2, 8)}`,
           journal_entry_id: "JE-20250624-001",
           photo_attachments: null,
           document_attachments: null,
@@ -437,7 +479,7 @@ const seedDatabase = async (syncOption = { alter: true }) => {
           capacity_id: capacities[0].capacity_id,
           location_name: locations[0].location_name,
           cost_center_name: costCenters[0].cost_center_name,
-          departmentName: "IT Department",
+          departmentName: departments[0].departmentName,
           custodian_name: custodians[0].custodian_name,
           acquisition_date: "2025-06-24",
           acquisition_cost: 1299.99,
@@ -452,8 +494,8 @@ const seedDatabase = async (syncOption = { alter: true }) => {
           yearly_depreciation: 3000.0,
           is_depreciation_calculated: true,
           status: "active",
-          barcode: "BC-LAP121121221",
-          rfid_tag: "RFID-LAP121121221",
+          barcode: `BC-LAP-${Math.random().toString(36).slice(2, 8)}`,
+          rfid_tag: `RFID-LAP-${Math.random().toString(36).slice(2, 8)}`,
           journal_entry_id: "JE-20250624-001",
           photo_attachments: null,
           document_attachments: null,
