@@ -5,8 +5,8 @@ const {
   deleteModule,
   getModuleById,
   getAllModules,
-} = require("../../controllers/subscription/modulesController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/modulesController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

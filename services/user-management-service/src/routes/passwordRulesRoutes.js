@@ -5,8 +5,8 @@ const {
   deletePasswordRule,
   getPasswordRuleById,
   getAllPasswordRules,
-} = require("../../controllers/user-security-management/passwordRulesController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/passwordRulesController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

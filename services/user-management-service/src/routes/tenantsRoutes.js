@@ -7,8 +7,8 @@ const {
   getAllTenants,
   exportTenantsToCSV,
   exportTenantsToPDF,
-} = require("../../controllers/subscription/tenantsController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/tenantsController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

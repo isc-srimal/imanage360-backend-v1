@@ -8,8 +8,8 @@ const {
   filterSubscriptionPlans,
   exportFilteredSubscriptionPlansToCSV,
   exportFilteredSubscriptionPlansToPDF,
-} = require("../../controllers/subscription/subscriptionPlansController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/subscriptionPlansController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

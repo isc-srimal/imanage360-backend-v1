@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "postinstall": "node src/copy-fonts.js",
+    "migrate": "node src/config/migrate.js",
+    "migrate:fresh": "node src/config/migrate.js fresh"
   },
   "keywords": [],
   "author": "",
@@ -25,7 +28,23 @@
     "node-cron": "^4.2.1",
     "sequelize": "^6.37.8",
     "uuid": "^13.0.0",
-    "web-push": "^3.6.7"
+    "web-push": "^3.6.7",
+    "pdfmake": "^0.3.7",
+    "archiver": "^7.0.1",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "fast-csv": "^5.0.2",
+    "file-type": "^21.0.0",
+    "json2csv": "^6.0.0-alpha.2",
+    "jsonwebtoken": "^9.0.2",
+    "jspdf": "^3.0.4",
+    "jspdf-autotable": "^5.0.2",
+    "moment": "^2.30.1",
+    "moment-timezone": "^0.5.47",
+    "pdfkit": "^0.16.0",
+    "sqlite3": "^5.1.7",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"

@@ -15,22 +15,22 @@ app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 // ─── Routes ────────────────────────────────────────────────────
-const authRoutes             = require('./routes/user/authRoutes');
-const manageUserRoutes       = require('./routes/user/manageUserRoutes');
+const authRoutes             = require('./routes/authRoutes');
+const manageUserRoutes       = require('./routes/manageUserRoutes');
 const choicesListRoutes      = require('./routes/choicesListRoutes');
-const companySettingsRoutes  = require('./routes/user/companySettingsRoutes');
-const usersManagement        = require('./routes/user-security-management/usersRoutes');
-const usersTypes             = require('./routes/user-security-management/userTypesRoutes');
-const userGroupsRoutes       = require('./routes/user-security-management/userGroupsRoutes');
-const userRolesRoutes        = require('./routes/user-security-management/rolesRoutes');
-const permissionRoutes       = require('./routes/user-security-management/permissionsRoutes');
-const passwordRulesRoutes    = require('./routes/user-security-management/passwordRulesRoutes');
-const rolePermissionsRoutes  = require('./routes/user-security-management/rolePermissionsRoutes');
-const organizations          = require('./routes/subscription/organizationsRoutes');
-const tenants                = require('./routes/subscription/tenantsRoutes');
-const branchesRoutes         = require('./routes/subscription/branchesRoutes');
-const modulesRoutes          = require('./routes/subscription/modulesRoutes');
-const subscriptionPlansRoutes = require('./routes/subscription/subscriptionPlansRoutes');
+const companySettingsRoutes  = require('./routes/companySettingsRoutes');
+const usersManagement        = require('./routes/usersRoutes');
+const usersTypes             = require('./routes/userTypesRoutes');
+const userGroupsRoutes       = require('./routes/userGroupsRoutes');
+const userRolesRoutes        = require('./routes/rolesRoutes');
+const permissionRoutes       = require('./routes/permissionsRoutes');
+const passwordRulesRoutes    = require('./routes/passwordRulesRoutes');
+const rolePermissionsRoutes  = require('./routes/rolePermissionsRoutes');
+const organizations          = require('./routes/organizationsRoutes');
+const tenants                = require('./routes/tenantsRoutes');
+const branchesRoutes         = require('./routes/branchesRoutes');
+const modulesRoutes          = require('./routes/modulesRoutes');
+const subscriptionPlansRoutes = require('./routes/subscriptionPlansRoutes');
 
 app.use('/api/auth',              authRoutes);
 app.use('/api/manageUser',        manageUserRoutes);
