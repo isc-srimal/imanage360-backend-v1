@@ -7,7 +7,7 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 const rateLimit = require("express-rate-limit");
 const jwt = require("jsonwebtoken");
-const { verifyToken } = require("./middleware/authMiddleware");
+const { verifyToken } = require("../src/middleware/authMiddleware");
 const { swaggerUi, swaggerSpec } = require("../swagger/swaggerConfig");
 const dotenv = require("dotenv");
 
@@ -108,6 +108,50 @@ const authenticateToken = (req, res, next) => {
     "/api/crm/prospects",
     "/api/crm/forms",
     "/api/crm/form-fields",
+    "/api/schedules",
+    "/api/equipment",
+    "/api/joblocations",
+    "/api/main-categories",
+    "/api/nextservicetypes",
+    "/api/operatortypes",
+    "/api/servicecategories",
+    "/api/serviceproviders",
+    "/api/services",
+    "/api/servicetypeones",
+    "/api/servicetypetwos",
+    "/api/maintenance",
+    "/api/sales-order-old",
+    "/api/sales-orders",
+    "/api/operational-handling",
+    "/api/vehicle-owners",
+    "/api/manpower",
+    "/api/active-allocations",
+    "/api/service-entry-types",
+    "/api/vehicle-types",
+    "/api/products",
+    "/api/attachments",
+    "/api/attachment-locations",
+    "/api/sales-order-recoveries",
+    "/api/attachment-stages",
+    "/api/equipment-stages",
+    "/api/manpower-stages",
+    "/api/recovery-stages",
+    "/api/backup-equipment-stages",
+    "/api/backup-manpower-stages",
+    "/api/sub-product-attachment-stages",
+    "/api/delivery-notes",
+    "/api/master-checklist",
+    "/api/operational-modifications",
+    "/api/attachment-swaps",
+    "/api/equipment-swaps",
+    "/api/operator-changes",
+    "/api/swapreasons",
+    "/api/sub-product-swaps",
+    "/api/off-hire-notes",
+    "/api/chargeable-types",
+    "/api/swap-requests",
+    "/api/sub-product-attachment-assignments",
+    "/api/push",
     "/api/assets",
     "/api/sub-assets",
     "/api/asset-transfers",
@@ -240,14 +284,45 @@ app.use("/api/schedules", proxy(SERVICES.FLEET));
 app.use("/api/equipment", proxy(SERVICES.FLEET));
 app.use("/api/joblocations", proxy(SERVICES.FLEET));
 app.use("/api/main-categories", proxy(SERVICES.FLEET));
+app.use("/api/nextservicetypes", proxy(SERVICES.FLEET));
+app.use("/api/operatortypes", proxy(SERVICES.FLEET));
+app.use("/api/servicecategories", proxy(SERVICES.FLEET));
+app.use("/api/serviceproviders", proxy(SERVICES.FLEET));
+app.use("/api/services", proxy(SERVICES.FLEET));
+app.use("/api/servicetypeones", proxy(SERVICES.FLEET));
+app.use("/api/servicetypetwos", proxy(SERVICES.FLEET));
+app.use("/api/maintenance", proxy(SERVICES.FLEET));
+app.use("/api/sales-order-old", proxy(SERVICES.FLEET));
 app.use("/api/sales-orders", proxy(SERVICES.FLEET));
 app.use("/api/operational-handling", proxy(SERVICES.FLEET));
 app.use("/api/vehicle-owners", proxy(SERVICES.FLEET));
 app.use("/api/manpower", proxy(SERVICES.FLEET));
-app.use("/api/maintenance", proxy(SERVICES.FLEET));
+app.use("/api/active-allocations", proxy(SERVICES.FLEET));
+app.use("/api/service-entry-types", proxy(SERVICES.FLEET));
+app.use("/api/vehicle-types", proxy(SERVICES.FLEET));
+app.use("/api/products", proxy(SERVICES.FLEET));
+app.use("/api/attachments", proxy(SERVICES.FLEET));
+app.use("/api/attachment-locations", proxy(SERVICES.FLEET));
+app.use("/api/sales-order-recoveries", proxy(SERVICES.FLEET));
+app.use("/api/attachment-stages", proxy(SERVICES.FLEET));
+app.use("/api/equipment-stages", proxy(SERVICES.FLEET));
+app.use("/api/manpower-stages", proxy(SERVICES.FLEET));
+app.use("/api/recovery-stages", proxy(SERVICES.FLEET));
+app.use("/api/backup-equipment-stages", proxy(SERVICES.FLEET));
+app.use("/api/backup-manpower-stages", proxy(SERVICES.FLEET));
+app.use("/api/sub-product-attachment-stages", proxy(SERVICES.FLEET));
 app.use("/api/delivery-notes", proxy(SERVICES.FLEET));
-app.use("/api/swap-requests", proxy(SERVICES.FLEET));
+app.use("/api/master-checklist", proxy(SERVICES.FLEET));
+app.use("/api/operational-modifications", proxy(SERVICES.FLEET));
+app.use("/api/attachment-swaps", proxy(SERVICES.FLEET));
+app.use("/api/equipment-swaps", proxy(SERVICES.FLEET));
+app.use("/api/operator-changes", proxy(SERVICES.FLEET));
+app.use("/api/swapreasons", proxy(SERVICES.FLEET));
+app.use("/api/sub-product-swaps", proxy(SERVICES.FLEET));
 app.use("/api/off-hire-notes", proxy(SERVICES.FLEET));
+app.use("/api/chargeable-types", proxy(SERVICES.FLEET));
+app.use("/api/swap-requests", proxy(SERVICES.FLEET));
+app.use("/api/sub-product-attachment-assignments", proxy(SERVICES.FLEET));
 app.use("/api/push", proxy(SERVICES.FLEET));
 
 // Assets

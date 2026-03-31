@@ -8,9 +8,9 @@ const {
   filterJobLocations,
   exportFilteredJobLocationsToCSV,
   exportFilteredJobLocationsToPDF,
-} = require("../../controllers/fleet-management/jobLocationController");
+} = require("../controllers/jobLocationController");
 
-const { verifyToken } = require("../../middleware/authMiddleware");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

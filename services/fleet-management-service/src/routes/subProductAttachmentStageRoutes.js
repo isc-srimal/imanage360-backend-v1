@@ -361,8 +361,8 @@ const {
   exportFilteredSubProductAttachmentStagesToCSV,
   exportFilteredSubProductAttachmentStagesToPDF,
   getSubProductAttachmentStagesByProductId,
-} = require("../../controllers/fleet-management/subProductAttachmentStageController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/subProductAttachmentStageController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

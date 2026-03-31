@@ -8,8 +8,8 @@ const {
   filterVehicleTypes,
   exportFilteredVehicleTypesToCSV,
   exportFilteredVehicleTypesToPDF,
-} = require("../../controllers/fleet-management/vehicleTypeController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/vehicleTypeController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

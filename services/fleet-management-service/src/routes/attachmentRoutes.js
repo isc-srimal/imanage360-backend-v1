@@ -15,8 +15,8 @@ const {
   createStatusHistory,
   updateStatusHistory,
   getVehicleTypeByPlateNumber,
-} = require("../../controllers/fleet-management/attachmentController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/attachmentController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

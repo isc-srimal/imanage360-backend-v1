@@ -10,8 +10,8 @@ const {
   exportFilteredRecoveryStagesToCSV,
   exportFilteredRecoveryStagesToPDF,
   getRecoveryStagesByRecoveryId,
-} = require("../../controllers/fleet-management/recoveryStageController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/recoveryStageController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 
