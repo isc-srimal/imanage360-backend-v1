@@ -11,9 +11,9 @@ const {
   approveSubProductSwap,
   rejectSubProductSwap,
   getAllSubProductsByAttachmentId,
-} = require("../../controllers/fleet-management/subProductSwapController");
-const { verifyToken } = require("../../middleware/authMiddleware");
-const SubProductSwapModel = require("../../models/fleet-management/SubProductSwapModel");
+} = require("../controllers/subProductSwapController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
+const SubProductSwapModel = require("../models/SubProductSwapModel");
 
 const router = express.Router();
 

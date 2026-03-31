@@ -10,9 +10,9 @@ const {
   exportFilteredSalesOrderRecoveriesToPDF,
   createBulkSalesOrderRecoveries,
   getRecoveriesBySalesOrder,
-} = require("../../controllers/fleet-management/salesOrderRecoveryController");
+} = require("../controllers//salesOrderRecoveryController");
 
-const { verifyToken } = require("../../middleware/authMiddleware");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

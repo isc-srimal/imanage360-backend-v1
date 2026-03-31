@@ -8,9 +8,9 @@ const {
   filterChargeableTypes,
   exportFilteredChargeableTypesToCSV,
   exportFilteredChargeableTypesToPDF,
-} = require("../../controllers/fleet-management/chargeableTypeController");
+} = require("../controllers/chargeableTypeController");
 
-const { verifyToken } = require("../../middleware/authMiddleware");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

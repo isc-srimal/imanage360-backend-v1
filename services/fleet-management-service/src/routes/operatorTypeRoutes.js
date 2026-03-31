@@ -8,9 +8,9 @@ const {
   filterOperatorTypes,
   exportFilteredOperatorTypesToCSV,
   exportFilteredOperatorTypesToPDF,
-} = require("../../controllers/fleet-management/operatorTypeController");
+} = require("../controllers/operatorTypeController");
 
-const { verifyToken } = require("../../middleware/authMiddleware");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

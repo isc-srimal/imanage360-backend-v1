@@ -9,9 +9,9 @@ const {
   exportFilteredSwapReasonsToCSV,
   exportFilteredSwapReasonsToPDF,
   getSwapReasonsByCategory,
-} = require("../../controllers/fleet-management/swapReasonController");
+} = require("../controllers/swapReasonController");
 
-const { verifyToken } = require("../../middleware/authMiddleware");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

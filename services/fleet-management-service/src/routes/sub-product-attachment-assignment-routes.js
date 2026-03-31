@@ -4,8 +4,8 @@ const {
   saveAssignments,
   getAssignmentsBySalesOrder,
   deleteAssignment,
-} = require("../../controllers/fleet-management/subProductAttachmentAssignmentController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/subProductAttachmentAssignmentController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

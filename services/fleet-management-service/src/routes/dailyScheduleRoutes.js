@@ -11,8 +11,8 @@ const {
   getAlerts,
   resolveAlert,
   updateScheduleStatus,
-} = require("../../controllers/fleet-management/dailyScheduleController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/dailyScheduleController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

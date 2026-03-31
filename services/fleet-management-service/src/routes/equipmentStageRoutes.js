@@ -10,8 +10,8 @@ const {
   exportFilteredEquipmentStagesToCSV,
   exportFilteredEquipmentStagesToPDF,
   getEquipmentStagesByEquipmentId,
-} = require("../../controllers/fleet-management/equipmentStageController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/equipmentStageController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

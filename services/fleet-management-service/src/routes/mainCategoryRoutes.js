@@ -8,8 +8,8 @@ const {
   filterMainCategories,
   exportFilteredMainCategoriesToCSV,
   exportFilteredMainCategoriesToPDF,
-} = require("../../controllers/fleet-management/mainCategoryController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/mainCategoryController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

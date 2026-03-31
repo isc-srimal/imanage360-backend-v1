@@ -583,13 +583,13 @@ const {
   downloadOHNEquipmentTemplate,
   downloadOHNManpowerTemplate,
   downloadOHNAttachmentTemplate,
-} = require("../../controllers/fleet-management/masterChecklistController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/masterChecklistController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 const { 
   uploadChecklistTemplate, 
   uploadAttachmentChecklistTemplate,
   uploadManpowerChecklistTemplate 
-} = require("../../config/multerConfig");
+} = require("../config/multerConfig");
 const router = express.Router();
 const {
   MasterChecklistModel,
@@ -597,7 +597,7 @@ const {
   ChecklistCategoryModel,
   ChecklistItemModel,
   AssignedChecklistModel,
-} = require("../../models/fleet-management/MasterChecklistModel");
+} = require("../models/MasterChecklistModel");
 
 // Middleware to dynamically select the correct multer uploader
 

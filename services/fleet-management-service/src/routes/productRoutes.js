@@ -13,8 +13,8 @@ const {
   exportFilteredProductsToPDF,
   // updateAttachmentNumbers,
   // getRentalServicesBySalesOrder,
-} = require("../../controllers/fleet-management/productController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/productController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

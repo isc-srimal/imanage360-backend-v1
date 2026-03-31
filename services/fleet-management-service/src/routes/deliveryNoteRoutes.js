@@ -31,8 +31,8 @@ const {
   completeDNTrip,
   closeDNTrip,
 
-} = require("../../controllers/fleet-management/deliveryNoteController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/deliveryNoteController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");

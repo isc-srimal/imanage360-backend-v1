@@ -10,8 +10,8 @@ const {
   exportFilteredAttachmentStagesToCSV,
   exportFilteredAttachmentStagesToPDF,
   getAttachmentStagesByAttcahmentId,
-} = require("../../controllers/fleet-management/attachmentStageController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/attachmentStageController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

@@ -8,9 +8,9 @@ const {
   filterAttachmentLocations,
   exportFilteredAttachmentLocationsToCSV,
   exportFilteredAttachmentLocationsToPDF,
-} = require("../../controllers/fleet-management/attachmentLocationController");
+} = require("../controllers/attachmentLocationController");
 
-const { verifyToken } = require("../../middleware/authMiddleware");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

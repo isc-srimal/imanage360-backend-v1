@@ -8,9 +8,9 @@ const {
   filterMaintenance,
   exportFilteredMaintenanceToCSV,
   exportFilteredMaintenanceToPDF,
-} = require("../../controllers/fleet-management/maintenanceController");
+} = require("../controllers/maintenanceController");
 
-const { verifyToken } = require("../../middleware/authMiddleware");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 
