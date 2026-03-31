@@ -1,7 +1,7 @@
-const Employee = require("../../models/hr/employees/EmployeeModel");
-const PerformanceManagement = require("../../models/hr/PerformanceManagementModel");
-const Goals = require("../../models/hr/GoalModel");
-const KPIs = require("../../models/hr/KPIModel");
+const Employee = require("../models/employees/EmployeeModel");
+const PerformanceManagement = require("../models/PerformanceManagementModel");
+const Goals = require("../models/GoalModel");
+const KPIs = require("../models/KPIModel");
 const { Parser } = require("json2csv");
 const PdfPrinter = require("pdfmake");
 const path = require("path");

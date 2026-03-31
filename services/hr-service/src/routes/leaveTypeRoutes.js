@@ -8,8 +8,8 @@ const {
   filterLeaveTypes,
   exportFilteredLeaveTypeToCSV,
   exportFilteredLeaveTypeToPDF,
-} = require("../../controllers/hr/leaveTypeController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/leaveTypeController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 const router = express.Router();
 
 /**

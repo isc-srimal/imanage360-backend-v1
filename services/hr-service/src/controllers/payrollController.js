@@ -13,7 +13,7 @@ const { Parser } = require("json2csv");
 const PdfPrinter = require("pdfmake");
 const cron = require("node-cron");
 const jwt = require("jsonwebtoken");
-const { schedulePayrollCalculation } = require("../../cronJobs/payrollScheduler");
+const { schedulePayrollCalculation } = require("../cronJobs/payrollScheduler");
 
 const sourceDir = path.join(__dirname, "..", "..", "assets", "fonts");
 

@@ -11,8 +11,8 @@ const {
     filterApplyLeave,
     exportFilteredApplyLeaveToCSV,
     exportFilteredApplyLeaveToPDF,
-} = require("../../controllers/hr/leaveApprovalController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/leaveApprovalController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 const router = express.Router();
 
 /**

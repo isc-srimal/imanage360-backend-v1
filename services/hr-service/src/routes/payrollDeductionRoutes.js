@@ -3,9 +3,9 @@ const {
   createDeduction,
   updateDeduction,
   getDeductionsByPayrollId,
-} = require("../../controllers/hr/payrollDeductionController");
+} = require("../controllers/payrollDeductionController");
 
-const { verifyToken } = require("../../middleware/authMiddleware");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

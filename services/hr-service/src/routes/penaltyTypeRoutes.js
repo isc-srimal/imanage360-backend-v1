@@ -8,9 +8,9 @@ const {
   filterPenaltyTypes,
   exportFilteredPenaltyTypesToCSV,
   exportFilteredPenaltyTypesToPDF,
-} = require("../../controllers/hr/penaltyTypeController");
+} = require("../controllers/penaltyTypeController");
 
-const { verifyToken } = require("../../middleware/authMiddleware");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

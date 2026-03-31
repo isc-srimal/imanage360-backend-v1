@@ -8,9 +8,9 @@ const {
   filterIndustries,
   exportFilteredIndustriesToCSV,
   exportFilteredIndustriesToPDF,
-} = require("../../controllers/hr/industryController"); 
+} = require("../controllers/industryController"); 
 
-const { verifyToken } = require("../../middleware/authMiddleware");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

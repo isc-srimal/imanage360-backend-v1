@@ -8,9 +8,9 @@ const {
   filterCertificationTypes,
   exportFilteredCertificationTypesToCSV,
   exportFilteredCertificationTypesToPDF,
-} = require("../../controllers/hr/certificationTypeController");
+} = require("../controllers/certificationTypeController");
 
-const { verifyToken } = require("../../middleware/authMiddleware");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

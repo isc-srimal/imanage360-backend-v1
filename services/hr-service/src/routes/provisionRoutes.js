@@ -4,8 +4,8 @@ const {
   calculateAirTicketProvisionForAllEmployeesHandler,
   getAllAnnualLeavePolicies,
   getAllAirTicketPolicies,
-} = require("../../controllers/hr/provisionController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/provisionController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

@@ -39,7 +39,7 @@ app.use(
     },
     methods: "GET,POST,PUT,DELETE,PATCH",
     credentials: true,
-  })
+  }),
 );
 
 // Rate Limiting
@@ -69,6 +69,40 @@ const authenticateToken = (req, res, next) => {
     "/api/branches",
     "/api/modules",
     "/api/subscription-plans",
+    "/api/manageEmployee",
+    "/api/department",
+    "/api/contractType",
+    "/api/designation",
+    "/api/leaveType",
+    "/api/workplace",
+    "/api/bank",
+    "/api/penalties",
+    "/api/air",
+    "/api/payroll",
+    "/api/attendence",
+    "/api/jobPosting",
+    "/api/leave",
+    "/api/applyLeave",
+    "/api/loan",
+    "/api/loanApproval",
+    "/api/penalty",
+    "/api/commissions",
+    "/api/performance",
+    "/api/goal",
+    "/api/kpi",
+    "/api/trainingDevelopment",
+    "/api/countries",
+    "/api/gratuity",
+    "/api/provision",
+    "/api/payroll-deductions",
+    "/api/trainingDetails",
+    "/api/jobOnboarding",
+    "/api/contracts",
+    "/api/gatepass",
+    "/api/certifications-types",
+    "/api/certifications-names",
+    "/api/certifications-bodies",
+    "/api/industries",
     "/api/crm/leads",
     "/api/crm/sales-pipelines",
     "/api/crm/prospects",
@@ -189,6 +223,10 @@ app.use("/api/trainingDetails", proxy(SERVICES.HR));
 app.use("/api/jobOnboarding", proxy(SERVICES.HR));
 app.use("/api/contracts", proxy(SERVICES.HR));
 app.use("/api/gatepass", proxy(SERVICES.HR));
+app.use("/api/certifications-types", proxy(SERVICES.HR));
+app.use("/api/certifications-names", proxy(SERVICES.HR));
+app.use("/api/certifications-bodies", proxy(SERVICES.HR));
+app.use("/api/industries", proxy(SERVICES.HR));
 
 // CRM
 app.use("/api/crm/leads", proxy(SERVICES.CRM));

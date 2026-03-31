@@ -13,8 +13,8 @@ const {
   filterTrainingDetails,
   exportTrainingDetailsToCSV,
   exportTrainingDetailsToPDF,
-} = require("../../controllers/hr/trainingDetailsController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/trainingDetailsController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 const router = express.Router();
 
 /**

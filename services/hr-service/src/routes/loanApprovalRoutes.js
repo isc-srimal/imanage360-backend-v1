@@ -10,8 +10,8 @@ const {
     filterLoanApproval,
     exportFilteredLoanApprovalToCSV,
     exportFilteredLoanApprovalToPDF,
-} = require("../../controllers/hr/loanApprovalController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/loanApprovalController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 const router = express.Router();
 
 /**
