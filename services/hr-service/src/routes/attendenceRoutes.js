@@ -11,8 +11,8 @@ const {
   filterAttendance,
   exportFilteredAttendanceToCSV,
   exportFilteredAttendanceToPDF,
-} = require("../../controllers/hr/attendenceController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/attendenceController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 const router = express.Router();
 
 /**

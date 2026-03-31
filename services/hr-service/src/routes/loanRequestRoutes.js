@@ -8,8 +8,8 @@ const {
     filterLoans,
     exportFilteredLoansToCSV,
     exportFilteredLoansToPDF,
-} = require("../../controllers/hr/loanRequestController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/loanRequestController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 const router = express.Router();
 
 /**

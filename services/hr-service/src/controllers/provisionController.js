@@ -1,9 +1,9 @@
-const AnnualLeavePolicy = require("../../models/hr/provisions/AnnualLeaveProvisionPolicy");
-const AirTicketPolicy = require("../../models/hr/provisions/AirTicketProvisionPolicy");
-const CountryModel = require("../../models/hr/CountryModel");
-const AirTicketModel = require("../../models/hr/AirTicketModel");
-const Employee = require("../../models/hr/employees/EmployeeModel");
-const EmployeePayrollModel = require("../../models/hr/employees/EmployeePayrollModel");
+const AnnualLeavePolicy = require("../models/provisions/AnnualLeaveProvisionPolicy");
+const AirTicketPolicy = require("../models/provisions/AirTicketProvisionPolicy");
+const CountryModel = require("../models/CountryModel");
+const AirTicketModel = require("../models/AirTicketModel");
+const Employee = require("../models/employees/EmployeeModel");
+const EmployeePayrollModel = require("../models/employees/EmployeePayrollModel");
 const moment = require("moment");
 
 const calculateAnnualLeaveAmount = (basicSalary, annualLeaveCount) => {

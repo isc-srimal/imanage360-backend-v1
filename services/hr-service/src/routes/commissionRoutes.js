@@ -8,9 +8,9 @@ const {
   filterCommissions,
   exportFilteredCommissionsToCSV,
   exportFilteredCommissionsToPDF,
-} = require("../../controllers/hr/commissionController");
+} = require("../controllers/commissionController");
 
-const { verifyToken } = require("../../middleware/authMiddleware");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

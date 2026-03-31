@@ -1,4 +1,4 @@
-const PayrollDeduction = require("../../models/hr/PayrollDeductionModel");
+const PayrollDeduction = require("../models/PayrollDeductionModel");
 
 // Create Deduction Entry
 const createDeduction = async (req, res) => {

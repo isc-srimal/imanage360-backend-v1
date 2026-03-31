@@ -14,8 +14,8 @@ const {
   filterPayroll,
   exportFilteredPayrollToCSV,
   exportFilteredPayrollToPDF,
-} = require("../../controllers/hr/payrollController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/payrollController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 const router = express.Router();
 
 /**

@@ -2,8 +2,8 @@ const express = require("express");
 const {
     getCountryById,
     getAllCountries,
-} = require("../../controllers/hr/countriesController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/countriesController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 const router = express.Router();
 
 /**

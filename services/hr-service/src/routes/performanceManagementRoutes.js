@@ -18,8 +18,8 @@ const {
   filterPerformance,
   exportFilteredPerformanceToCSV,
   exportFilteredPerformanceToPDF,
-} = require("../../controllers/hr/performanceManagementController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/performanceManagementController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 const router = express.Router();
 
 /**

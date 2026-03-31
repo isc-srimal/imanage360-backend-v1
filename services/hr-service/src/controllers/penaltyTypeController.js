@@ -1,4 +1,4 @@
-const penaltyTypes = require("../../models/hr/PenaltyTypeModel");
+const penaltyTypes = require("../models/PenaltyTypeModel");
 const { Parser } = require("json2csv");
 const PdfPrinter = require("pdfmake");
 const path = require("path");

@@ -8,9 +8,9 @@ const {
   filterAirTickets,
   exportFilteredAirTicketsToCSV,
   exportFilteredAirTicketsToPDF,
-} = require("../../controllers/hr/airTicketController");
+} = require("../controllers/airTicketController");
 
-const { verifyToken } = require("../../middleware/authMiddleware");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 
