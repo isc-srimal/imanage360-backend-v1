@@ -1,8 +1,8 @@
 const express = require('express');
 const cors = require('cors');
+const path = require("path");
 const helmet = require('helmet');
 const morgan = require('morgan');
-const path = require('path');
 const cron = require('node-cron');
 require('dotenv').config();
 
@@ -13,52 +13,51 @@ app.use(morgan('dev'));
 app.use(cors({ origin: '*' }));
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
-app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 // ─── Routes ────────────────────────────────────────────────────
-const dailyScheduleRoutes                  = require('./routes/fleet-management/dailyScheduleRoutes');
-const equipmentRoutes                      = require('./routes/fleet-management/equipmentRoutes');
-const jobLocationRoutes                    = require('./routes/fleet-management/jobLocationRoutes');
-const mainCategoryRoutes                   = require('./routes/fleet-management/mainCategoryRoutes');
-const nextServiceTypeRoutes                = require('./routes/fleet-management/nextServiceTypeRoutes');
-const operatorTypeRoutes                   = require('./routes/fleet-management/operatorTypeRoutes');
-const serviceCategoryRoutes                = require('./routes/fleet-management/serviceCategoryRoutes');
-const serviceProviderRoutes                = require('./routes/fleet-management/serviceProviderRoutes');
-const servicesRoutes                       = require('./routes/fleet-management/servicesRoutes');
-const serviceTypeOneRoutes                 = require('./routes/fleet-management/serviceTypeOneRoutes');
-const serviceTypeTwoRoutes                 = require('./routes/fleet-management/serviceTypeTwoRoutes');
-const fleetMaintenanceRoutes               = require('./routes/fleet-management/maintenanceRoutes');
-const salesOrderOld                        = require('./routes/fleet-management/SalesOrderOld');
-const salesOrdersRoutes                    = require('./routes/fleet-management/salesOrdersRoutes');
-const operationalHandlingRoutes            = require('./routes/fleet-management/operationalHandlingRoutes');
-const vehicleOwnerRoutes                   = require('./routes/fleet-management/vehicleOwnerRoutes');
-const manpowerRoutes                       = require('./routes/fleet-management/manpowerRoutes');
-const activeAllocationsOriginalRoutes      = require('./routes/fleet-management/activeAllocationsOriginalRoutes');
-const serviceEntryTypeRoutes               = require('./routes/fleet-management/serviceEntryTypeRoutes');
-const vehicleTypeRoutes                    = require('./routes/fleet-management/vehicleTypeRoutes');
-const fleetProductRoutes                   = require('./routes/fleet-management/productRoutes');
-const fleetAttachmentRoutes                = require('./routes/fleet-management/attachmentRoutes');
-const attachmentLocationRoutes             = require('./routes/fleet-management/attachmentLocationRoutes');
-const salesOrderRecoveryRoutes             = require('./routes/fleet-management/salesOrderRecoveryRoutes');
-const attachmentStageRoutes                = require('./routes/fleet-management/attachmentStageRoutes');
-const equipmentStageRoutes                 = require('./routes/fleet-management/equipmentStageRoutes');
-const manpowerStageRoutes                  = require('./routes/fleet-management/manpowerStageRoutes');
-const recoveryStageRoutes                  = require('./routes/fleet-management/recoveryStageRoutes');
-const backupEquipmentStageRoutes           = require('./routes/fleet-management/backupEquipmentStageRoutes');
-const backupManpowerStageRoutes            = require('./routes/fleet-management/backupManpowerStageRoutes');
-const subProductAttachmentStageRoutes      = require('./routes/fleet-management/subProductAttachmentStageRoutes');
-const deliveryNoteRoutes                   = require('./routes/fleet-management/deliveryNoteRoutes');
-const masterChecklistRoutes                = require('./routes/fleet-management/masterChecklistRoutes');
-const operationalModificationRoutes        = require('./routes/fleet-management/operationalModificationRoutes');
-const attachmentSwapRoutes                 = require('./routes/fleet-management/attachmentSwapRoutes');
-const equipmentSwapRoutes                  = require('./routes/fleet-management/equipmentSwapRoutes');
-const operatorChangeRoutes                 = require('./routes/fleet-management/operatorChangeRoutes');
-const swapReasonRoutes                     = require('./routes/fleet-management/swapReasonRoutes');
-const subProductSwapRoutes                 = require('./routes/fleet-management/sub-product-swap-routes');
-const OffHireNotesRoutes                   = require('./routes/fleet-management/offHireNoteRoutes');
-const ChargeableTypeRoutes                 = require('./routes/fleet-management/chargeableTypeRoutes');
-const SwapRequestRoutes                    = require('./routes/fleet-management/swap-requests-routes');
-const subProductAttachmentAssignmentRoutes = require('./routes/fleet-management/sub-product-attachment-assignment-routes');
+const dailyScheduleRoutes                  = require('./routes/dailyScheduleRoutes');
+const equipmentRoutes                      = require('./routes/equipmentRoutes');
+const jobLocationRoutes                    = require('./routes/jobLocationRoutes');
+const mainCategoryRoutes                   = require('./routes/mainCategoryRoutes');
+const nextServiceTypeRoutes                = require('./routes/nextServiceTypeRoutes');
+const operatorTypeRoutes                   = require('./routes/operatorTypeRoutes');
+const serviceCategoryRoutes                = require('./routes/serviceCategoryRoutes');
+const serviceProviderRoutes                = require('./routes/serviceProviderRoutes');
+const servicesRoutes                       = require('./routes/servicesRoutes');
+const serviceTypeOneRoutes                 = require('./routes/serviceTypeOneRoutes');
+const serviceTypeTwoRoutes                 = require('./routes/serviceTypeTwoRoutes');
+const fleetMaintenanceRoutes               = require('./routes/maintenanceRoutes');
+const salesOrderOld                        = require('./routes/SalesOrderOld');
+const salesOrdersRoutes                    = require('./routes/salesOrdersRoutes');
+const operationalHandlingRoutes            = require('./routes/operationalHandlingRoutes');
+const vehicleOwnerRoutes                   = require('./routes/vehicleOwnerRoutes');
+const manpowerRoutes                       = require('./routes/manpowerRoutes');
+const activeAllocationsOriginalRoutes      = require('./routes/activeAllocationsOriginalRoutes');
+const serviceEntryTypeRoutes               = require('./routes/serviceEntryTypeRoutes');
+const vehicleTypeRoutes                    = require('./routes/vehicleTypeRoutes');
+const fleetProductRoutes                   = require('./routes/productRoutes');
+const fleetAttachmentRoutes                = require('./routes/attachmentRoutes');
+const attachmentLocationRoutes             = require('./routes/attachmentLocationRoutes');
+const salesOrderRecoveryRoutes             = require('./routes/salesOrderRecoveryRoutes');
+const attachmentStageRoutes                = require('./routes/attachmentStageRoutes');
+const equipmentStageRoutes                 = require('./routes/equipmentStageRoutes');
+const manpowerStageRoutes                  = require('./routes/manpowerStageRoutes');
+const recoveryStageRoutes                  = require('./routes/recoveryStageRoutes');
+const backupEquipmentStageRoutes           = require('./routes/backupEquipmentStageRoutes');
+const backupManpowerStageRoutes            = require('./routes/backupManpowerStageRoutes');
+const subProductAttachmentStageRoutes      = require('./routes/subProductAttachmentStageRoutes');
+const deliveryNoteRoutes                   = require('./routes/deliveryNoteRoutes');
+const masterChecklistRoutes                = require('./routes/masterChecklistRoutes');
+const operationalModificationRoutes        = require('./routes/operationalModificationRoutes');
+const attachmentSwapRoutes                 = require('./routes/attachmentSwapRoutes');
+const equipmentSwapRoutes                  = require('./routes/equipmentSwapRoutes');
+const operatorChangeRoutes                 = require('./routes/operatorChangeRoutes');
+const swapReasonRoutes                     = require('./routes/swapReasonRoutes');
+const subProductSwapRoutes                 = require('./routes/sub-product-swap-routes');
+const OffHireNotesRoutes                   = require('./routes/offHireNoteRoutes');
+const ChargeableTypeRoutes                 = require('./routes/chargeableTypeRoutes');
+const SwapRequestRoutes                    = require('./routes/swap-requests-routes');
+const subProductAttachmentAssignmentRoutes = require('./routes/sub-product-attachment-assignment-routes');
 const pushRoutes                           = require('./routes/pushRoutes');
 
 // LPO Push Notifications Cron
@@ -88,6 +87,11 @@ cron.schedule('0 9 * * *', async () => {
     console.error('❌ [CRON] LPO reminder push notification error:', error);
   }
 });
+
+console.log('⏰ LPO reminder push notification cron scheduled (daily 9:00 AM)');
+
+// File Upload (If applicable)
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use('/api/schedules',                          dailyScheduleRoutes);
 app.use('/api/equipment',                          equipmentRoutes);
@@ -138,7 +142,23 @@ app.get('/health', (req, res) => {
   res.json({ service: 'fleet-management-service', status: 'OK' });
 });
 
+// ─── Start Server ──────────────────────────────────────────────────────────────
 const PORT = process.env.PORT || 4004;
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`🚛 Fleet Management Service running on port ${PORT}`);
+ 
+  // ✅ Development only: run LPO push job once on startup to verify it works
+  // if (process.env.NODE_ENV === 'development') {
+    console.log('🧪 [DEV] Running initial LPO reminder push check...');
+    try {
+      await _runLPOReminderJob();
+    } catch (err) {
+      console.error('❌ [DEV] Initial LPO push check failed:', err.message);
+    }
+ // }
 });
+
+// const PORT = process.env.PORT || 4004;
+// app.listen(PORT, () => {
+//   console.log(`🚛 Fleet Management Service running on port ${PORT}`);
+// });

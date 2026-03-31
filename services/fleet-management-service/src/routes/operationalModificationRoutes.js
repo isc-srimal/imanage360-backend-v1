@@ -4,8 +4,8 @@ const {
   getModificationsBySalesOrder,
   getShiftChangesBySalesOrder,
   deleteModification,
-} = require("../../controllers/fleet-management/operationalModificationController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/operationalModificationController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

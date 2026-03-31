@@ -5167,8 +5167,8 @@ const {
   getAllFilterActiveOrders,
   getFilterCompletedOrders,
   debugOrders,
-} = require("../../controllers/fleet-management/operationalHandlingController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/operationalHandlingController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

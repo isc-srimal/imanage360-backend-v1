@@ -29,8 +29,8 @@ const {
   generateOHNTripPDF,
   completeOHNTrip,
   closeOHNTrip,
-} = require("../../controllers/fleet-management/offHireNoteController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/offHireNoteController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 const multer = require("multer");
 
 const router = express.Router();

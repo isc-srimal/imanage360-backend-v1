@@ -19,8 +19,8 @@ const {
   getAllocatedManpowerBySalesOrder,
   getAllocatedAttachmentsBySalesOrder,
   updateOpsStatus,
-} = require("../../controllers/fleet-management/activeAllocationsOriginalController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/activeAllocationsOriginalController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

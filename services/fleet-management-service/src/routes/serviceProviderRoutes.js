@@ -8,9 +8,9 @@ const {
   filterServiceProviders,
   exportFilteredServiceProvidersToCSV,
   exportFilteredServiceProvidersToPDF,
-} = require("../../controllers/fleet-management/serviceProviderController");
+} = require("../controllers/serviceProviderController");
 
-const { verifyToken } = require("../../middleware/authMiddleware");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

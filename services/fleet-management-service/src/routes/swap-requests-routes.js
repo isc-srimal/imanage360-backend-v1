@@ -1,11 +1,11 @@
 // routes/fleet-management/swap-requests-routes.js
 const express = require("express");
-const { verifyToken } = require("../../middleware/authMiddleware");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 const { Op } = require("sequelize");
-const EquipmentSwapModel = require("../../models/fleet-management/EquipmentSwapModel");
-const AttachmentSwapModel = require("../../models/fleet-management/AttachmentSwapModel");
-const SubProductSwapModel = require("../../models/fleet-management/SubProductSwapModel");
-const OperatorChangeModel = require("../../models/fleet-management/OperatorChangeModel");
+const EquipmentSwapModel = require("../models/EquipmentSwapModel");
+const AttachmentSwapModel = require("../models/AttachmentSwapModel");
+const SubProductSwapModel = require("../models/SubProductSwapModel");
+const OperatorChangeModel = require("../models/OperatorChangeModel");
 
 const router = express.Router();
 

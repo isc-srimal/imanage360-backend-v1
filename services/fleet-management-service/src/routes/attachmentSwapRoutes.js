@@ -2132,15 +2132,15 @@ const {
   closeAttachmentOHNTrip,
   generateAttachmentOffHireNotePDFForTrip,
   uploadAttachmentOffHireNoteToTrip,
-} = require("../../controllers/fleet-management/attachmentSwapController");
-const { verifyToken } = require("../../middleware/authMiddleware");
-const upload = require("../../middleware/uploadMiddleware");
-const AttachmentSwapModel = require("../../models/fleet-management/AttachmentSwapModel");
+} = require("../controllers/attachmentSwapController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
+const upload = require("../middleware/uploadMiddleware");
+const AttachmentSwapModel = require("../models/AttachmentSwapModel");
 const { Op } = require("sequelize");
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
-const UsersModel = require("../../models/user-security-management/UsersModel");
+const UsersModel = require("../../../user-management-service/src/models/UsersModel");
 
 const router = express.Router();
 

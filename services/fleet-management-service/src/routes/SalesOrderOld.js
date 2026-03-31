@@ -8,8 +8,8 @@ const {
     filterSalesOrders,
     exportFilteredSalesOrdersToCSV,
     exportFilteredSalesOrdersToPDF,
-} = require('../../controllers/fleet-management/salesOrderOldController');
-const { verifyToken } = require('../../middleware/authMiddleware');
+} = require('../controllers/salesOrderOldController');
+const { verifyToken } = require('../../../../api-gateway/src/middleware/authMiddleware');
 
 const router = express.Router();
 

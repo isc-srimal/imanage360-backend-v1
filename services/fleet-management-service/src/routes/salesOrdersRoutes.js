@@ -30,9 +30,9 @@ const {
   getRevisionIncompleteSalesOrders,   
   getNoRevisionsSalesOrders, 
   getRentalServicesBySalesOrder,
-} = require("../../controllers/fleet-management/salesOrdersController");
-const { verifyToken } = require("../../middleware/authMiddleware");
-const checkLPOReminders = require("../../middleware/lpoReminderCheck");
+} = require("../controllers/salesOrdersController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
+const checkLPOReminders = require("../middleware/lpoReminderCheck");
 
 const router = express.Router();
 

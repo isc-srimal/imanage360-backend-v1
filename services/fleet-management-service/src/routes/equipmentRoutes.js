@@ -14,8 +14,8 @@ const {
   filterEquipment,
   exportFilteredEquipmentToCSV,
   exportFilteredEquipmentToPDF,
-} = require("../../controllers/fleet-management/equipmentController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/equipmentController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 
