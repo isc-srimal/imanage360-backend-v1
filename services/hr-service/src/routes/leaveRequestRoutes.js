@@ -11,9 +11,9 @@ const {
     filterLeaveRequest,
     exportFilteredLeaveRequestToCSV,
     exportFilteredLeaveRequestToPDF,
-} = require("../../controllers/hr/leaveRequestController");
-const { verifyToken } = require("../../middleware/authMiddleware");
-const { roleCheck } = require("../../middleware/roleMiddleware");
+} = require("../controllers/leaveRequestController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
+const { roleCheck } = require("../../../../api-gateway/src/middleware/roleMiddleware");
 const router = express.Router();
 
 /**

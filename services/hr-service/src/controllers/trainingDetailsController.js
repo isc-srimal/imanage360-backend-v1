@@ -1,6 +1,6 @@
-const Employee = require("../../models/hr/employees/EmployeeModel");
-const TrainingAndDevelopment = require("../../models/hr/TrainingAndDevelopmentModel");
-const TrainingDetails = require("../../models/hr/TrainingDetailsModel");
+const Employee = require("../models/employees/EmployeeModel");
+const TrainingAndDevelopment = require("../models/TrainingAndDevelopmentModel");
+const TrainingDetails = require("../models/TrainingDetailsModel");
 const { Parser } = require("json2csv");
 const PdfPrinter = require("pdfmake");
 const path = require("path");

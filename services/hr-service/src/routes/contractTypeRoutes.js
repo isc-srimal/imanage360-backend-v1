@@ -8,8 +8,8 @@ const {
   filterContractTypes,
   exportFilteredContractTypesToCSV,
   exportFilteredContractTypesToPDF,
-} = require("../../controllers/hr/contractTypeController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/contractTypeController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 const router = express.Router();
 
 /**

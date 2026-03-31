@@ -40,8 +40,8 @@ const {
   filterEmployees,
   exportFilteredEmployeesToCSV,
   exportFilteredEmployeesToPDF,
-} = require("../../controllers/hr/employeeController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/employeeController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 const router = express.Router();
 
 /**

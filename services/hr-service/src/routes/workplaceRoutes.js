@@ -7,8 +7,8 @@ const {
   getAllWorkplaces,
   exportFilteredWorkplaceToCSV,
   exportFilteredWorkplaceToPDF,
-} = require("../../controllers/hr/workplaceController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/workplaceController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 const router = express.Router();
 
 /**

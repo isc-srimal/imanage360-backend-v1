@@ -9,9 +9,9 @@ const {
   filterGatePassLocations,
   exportFilteredLocationsToCSV,
   exportFilteredLocationsToPDF,
-} = require("../../controllers/hr/gatePassLocationController");
+} = require("../controllers/gatePassLocationController");
 
-const { verifyToken } = require("../../middleware/authMiddleware");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

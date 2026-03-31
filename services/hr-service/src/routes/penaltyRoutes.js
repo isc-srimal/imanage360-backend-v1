@@ -9,8 +9,8 @@ const {
   filterPenalties,
   exportFilteredPenaltiesToCSV,
   exportFilteredPenaltiesToPDF,
-} = require("../../controllers/hr/penaltyController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/penaltyController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 

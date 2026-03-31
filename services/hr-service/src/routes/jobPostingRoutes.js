@@ -10,8 +10,8 @@ const {
   filterJobPosting,
   exportFilteredJobPostingToCSV,
   exportFilteredJobPostingToPDF,
-} = require("../../controllers/hr/jobPostingController");
-const { verifyToken } = require("../../middleware/authMiddleware");
+} = require("../controllers/jobPostingController");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 const router = express.Router();
 
 /**

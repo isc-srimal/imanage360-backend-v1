@@ -1,6 +1,8 @@
 // services/hr-service/src/index.js
 const express = require('express');
 const cors = require('cors');
+const cron = require('node-cron'); 
+const path = require("path");
 const helmet = require('helmet');
 const morgan = require('morgan');
 require('dotenv').config();
@@ -46,6 +48,14 @@ const trainingDetailsRoutes    = require('./routes/trainingDetailsRoutes');
 const jobOnboardingRoutes      = require('./routes/jobOnboardingRoutes');
 const employeeContractRoutes   = require('./routes/employeeContractRoutes');
 const gatePassLocationRoutes   = require('./routes/gatePassLocationRoutes');
+
+const { schedulePayrollCalculation } = require("./cronJobs/payrollScheduler");
+
+// Payroll
+schedulePayrollCalculation();
+
+// File Upload (If applicable)
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // ─── Routes ────────────────────────────────────────────────────────────────
 app.use('/api/manageEmployee',       employeeRoutes);

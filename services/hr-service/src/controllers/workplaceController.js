@@ -1,4 +1,4 @@
-const workplaces = require("../../models/hr/WorkplaceModel");
+const workplaces = require("../models/WorkplaceModel");
 const { Parser } = require("json2csv");
 const PdfPrinter = require("pdfmake");
 const path = require("path");

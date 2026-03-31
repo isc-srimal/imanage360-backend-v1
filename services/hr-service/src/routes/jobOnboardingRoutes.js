@@ -12,9 +12,9 @@ const {
   serveResumeFile,
   exportFilteredJobOnboardingsToCSV,
   exportFilteredJobOnboardingsToPDF,
-} = require("../../controllers/hr/jobOnboardingController");
+} = require("../controllers/jobOnboardingController");
 
-const { verifyToken } = require("../../middleware/authMiddleware");
+const { verifyToken } = require("../../../../api-gateway/src/middleware/authMiddleware");
 
 const router = express.Router();
 
