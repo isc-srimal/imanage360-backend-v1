@@ -5988,7 +5988,7 @@ const createAttachmentSwap = async (req, res) => {
     // Update allocation attachment if allocation_id exists
     if (allocation_id) {
       const ActiveAllocationAttachmentModel =
-        require("../../models/fleet-management/ActiveAllocationsOriginalModel").AllocationAttachmentModel;
+        require("../models/ActiveAllocationsOriginalModel").AllocationAttachmentModel;
 
       await ActiveAllocationAttachmentModel.update(
         {

@@ -519,6 +519,18 @@ const EmployeeModel = sequelize.define(
       allowNull: true,
       defaultValue: {},
     },
+    familyDetailsId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    workExperienceId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    departmentId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
   },
   {
     tableName: "tbl_employees",
@@ -568,46 +580,46 @@ const EmployeeModel = sequelize.define(
     },
   }
 );
-const DepartmentModel = sequelize.define('tbl_department', {
-    id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-    },
-    departmentNo: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    },
-    departmentName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-    },
-    departmentDescription: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    departmentHead: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    location: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    createdBy: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    status: {
-        type: DataTypes.ENUM('Active', 'Inactive'),
-        allowNull: false,
-        defaultValue: 'Active',
-    },
-}, {
-    tableName: 'tbl_department',
-    timestamps: false,
-});
+// const DepartmentModel = sequelize.define('tbl_department', {
+//     id: {
+//         type: DataTypes.INTEGER,
+//         primaryKey: true,
+//         autoIncrement: true,
+//     },
+//     departmentNo: {
+//         type: DataTypes.INTEGER,
+//         allowNull: false,
+//     },
+//     departmentName: {
+//         type: DataTypes.STRING,
+//         allowNull: false,
+//         unique: true,
+//     },
+//     departmentDescription: {
+//         type: DataTypes.STRING,
+//         allowNull: false,
+//     },
+//     departmentHead: {
+//         type: DataTypes.STRING,
+//         allowNull: false,
+//     },
+//     location: {
+//         type: DataTypes.STRING,
+//         allowNull: false,
+//     },
+//     createdBy: {
+//         type: DataTypes.STRING,
+//         allowNull: false,
+//     },
+//     status: {
+//         type: DataTypes.ENUM('Active', 'Inactive'),
+//         allowNull: false,
+//         defaultValue: 'Active',
+//     },
+// }, {
+//     tableName: 'tbl_department',
+//     timestamps: false,
+// });
 const AssetCategoryModel = sequelize.define('tbl_asset_categories', {
     category_id: {
         type: DataTypes.INTEGER,
@@ -1030,10 +1042,10 @@ const AssetModel = sequelize.define('tbl_assets', {
     departmentName: {
         type: DataTypes.STRING(255),
         allowNull: true,
-        references: {
-            model: DepartmentModel,
-            key: 'departmentName',
-        },
+        // references: {
+        //     model: DepartmentModel,
+        //     key: 'departmentName',
+        // },
     },
     custodian_name: {
         type: DataTypes.STRING(255),
@@ -1172,7 +1184,7 @@ const EquipmentModel = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: "tbl_vehicle_owner",
+        model: VehicleOwnerModel,
         key: "vehicle_owner_id",
       },
     },
@@ -1258,10 +1270,10 @@ const EquipmentModel = sequelize.define(
     departmentName: {
       type: DataTypes.STRING(255),
       allowNull: true,
-      references: {
-        model: DepartmentModel,
-        key: "departmentName",
-      },
+      // references: {
+      //   model: DepartmentModel,
+      //   key: "departmentName",
+      // },
     },
     // customer_name: {
     //   type: DataTypes.STRING(255),
@@ -1365,6 +1377,26 @@ AssetModel.hasMany(EquipmentModel, {
   as: "equipment",
 });
 
+EquipmentModel.belongsTo(AssetClassificationModel, {
+  foreignKey: "classification_id",
+  as: "classification",
+});
+EquipmentModel.belongsTo(LocationIDModel, {
+  foreignKey: "location_name",
+  as: "location",
+});
+EquipmentModel.belongsTo(CostCenterIDModel, {
+  foreignKey: "cost_center_name",
+  as: "costCenter",
+});
+EquipmentModel.belongsTo(CustodianIDModel, {
+  foreignKey: "custodian_name",
+  as: "custodian",
+});
+EquipmentModel.belongsTo(SupplierIDModel, {
+  foreignKey: "supplier_name",
+  as: "supplier",
+});
 EquipmentModel.belongsTo(AssetCategoryModel, {
   foreignKey: "category_id",
   as: "category",
@@ -1395,13 +1427,13 @@ VehicleOwnerModel.hasMany(EquipmentModel, {
   as: "equipment",
 });
 
-EquipmentModel.belongsTo(DepartmentModel, {
-  foreignKey: "departmentName",
-  as: "department",
-});
-DepartmentModel.hasMany(EquipmentModel, {
-  foreignKey: "departmentName",
-  as: "equipment",
-});
+// EquipmentModel.belongsTo(DepartmentModel, {
+//   foreignKey: "departmentName",
+//   as: "department",
+// });
+// DepartmentModel.hasMany(EquipmentModel, {
+//   foreignKey: "departmentName",
+//   as: "equipment",
+// });
 
 module.exports = EquipmentModel;

@@ -520,6 +520,18 @@ const EmployeeModel = sequelize.define(
       allowNull: true,
       defaultValue: {},
     },
+    familyDetailsId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    workExperienceId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    departmentId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
   },
   {
     tableName: "tbl_employees",

@@ -4,7 +4,7 @@ const AssetSubcategoryModel = require("../models/AssetSubcategoryModel");
 const AssetCapacityModel = require("../models/AssetCapacityModel");
 const AssetClassificationModel = require("../models/AssetClassificationModel");
 const AssetLocationModel = require("../models/LocationIDModel");
-const AssetDepartmentModel = require("../../../hr-service/src/models/DepartmentModel");
+const AssetDepartmentModel = require("../models/DepartmentModel");
 const AssetCostCenterModel = require("../models/CostCenterIDModel");
 const AssetCustodianModel = require("../models/CustodianIDModel");
 const AssetSupplierModel = require("../models/SupplierIDModel");
@@ -875,9 +875,9 @@ const createAsset = async (req, res) => {
     // Auto-create equipment record if the asset is active
     if (assetStatus === "active") {
       try {
-        const VehicleOwnerModel = require("../../models/fleet-management/VehicleOwnerModel");
-        const EquipmentModel = require("../../models/fleet-management/EquipmentModel");
-        const EmployeeModel = require("../../models/hr/employees/EmployeeModel");
+        const VehicleOwnerModel = require("../../../fleet-management-service/src/models/VehicleOwnerModel");
+        const EquipmentModel = require("../../../fleet-management-service/src/models/EquipmentModel");
+        const EmployeeModel = require("../../../hr-service/src/models/employees/EmployeeModel");
 
         const autoXpertOwner = await VehicleOwnerModel.findOne({
           where: {
