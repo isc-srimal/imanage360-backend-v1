@@ -28,8 +28,8 @@ const BranchesModel = require("../models/BranchesModel");
 const User = require("../models/UserModel");
 const UserRole = require("../models/UserRoleModel");
 const CompanyProfileModel = require("../models/CompanyProfileModel");
-const Countries = require("../../../hr-service/src/models/CountryModel");
-const Employee = require("../../../hr-service/src/models/employees/EmployeeModel");
+const Countries = require("../models/OrganizationsModel").associations.country.target;
+const Employee = require("../models/UsersModel").associations.employee.target;
 
 const seedDatabase = async (syncOption = { alter: true }) => {
   try {

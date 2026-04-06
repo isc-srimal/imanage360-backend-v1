@@ -10,46 +10,47 @@ const LocationIDModel = require('./LocationIDModel');
 const CostCenterIDModel = require('./CostCenterIDModel');
 const CustodianIDModel = require('./CustodianIDModel');
 const SupplierIDModel = require('./SupplierIDModel');
-const DepartmentModel = sequelize.define('tbl_department', {
-    id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-    },
-    departmentNo: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    },
-    departmentName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-    },
-    departmentDescription: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    departmentHead: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    location: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    createdBy: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    status: {
-        type: DataTypes.ENUM('Active', 'Inactive'),
-        allowNull: false,
-        defaultValue: 'Active',
-    },
-}, {
-    tableName: 'tbl_department',
-    timestamps: false,
-});
+const DepartmentModel = require('./DepartmentModel');
+// const DepartmentModel = sequelize.define('tbl_department', {
+//     id: {
+//         type: DataTypes.INTEGER,
+//         primaryKey: true,
+//         autoIncrement: true,
+//     },
+//     departmentNo: {
+//         type: DataTypes.INTEGER,
+//         allowNull: false,
+//     },
+//     departmentName: {
+//         type: DataTypes.STRING,
+//         allowNull: false,
+//         unique: true,
+//     },
+//     departmentDescription: {
+//         type: DataTypes.STRING,
+//         allowNull: false,
+//     },
+//     departmentHead: {
+//         type: DataTypes.STRING,
+//         allowNull: false,
+//     },
+//     location: {
+//         type: DataTypes.STRING,
+//         allowNull: false,
+//     },
+//     createdBy: {
+//         type: DataTypes.STRING,
+//         allowNull: false,
+//     },
+//     status: {
+//         type: DataTypes.ENUM('Active', 'Inactive'),
+//         allowNull: false,
+//         defaultValue: 'Active',
+//     },
+// }, {
+//     tableName: 'tbl_department',
+//     timestamps: false,
+// });
 
 const AssetModel = sequelize.define('tbl_assets', {
     asset_id: {

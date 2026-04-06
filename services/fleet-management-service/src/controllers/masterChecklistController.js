@@ -1240,7 +1240,7 @@ const getEquipmentAssignedChecklists = async (req, res) => {
     const { serial_number } = req.params;
 
     // Verify equipment exists
-    const EquipmentModel = require("../../models/fleet-management/EquipmentModel");
+    const EquipmentModel = require("../models/EquipmentModel");
     const equipment = await EquipmentModel.findByPk(serial_number);
 
     if (!equipment) {
@@ -1349,20 +1349,20 @@ const getEquipmentChecklistTemplate = async (req, res) => {
     }
 
     // Get equipment details
-    const EquipmentModel = require("../../models/fleet-management/EquipmentModel");
+    const EquipmentModel = require("../models/EquipmentModel");
     const equipment = await EquipmentModel.findByPk(serial_number, {
       include: [
         {
-          model: require("../../models/hr/employees/EmployeeModel"),
+          model: require("../../../hr-service/src/models/employees/EmployeeModel"),
           as: "employee",
           attributes: ["id", "personalDetails"],
         },
         {
-          model: require("../../models/fixed-assests-management/AssetCategoryModel"),
+          model: require("../../../fixed-assets-service/src/models/AssetCategoryModel"),
           as: "category",
         },
         {
-          model: require("../../models/fixed-assests-management/AssetSubcategoryModel"),
+          model: require("../../../fixed-assets-service/src/models/AssetSubcategoryModel"),
           as: "subcategory",
         },
       ],
@@ -1483,11 +1483,11 @@ const getAllAssignableEquipment = async (req, res) => {
     } = req.query;
     const offset = (page - 1) * parseInt(limit);
 
-    const EquipmentModel = require("../../models/fleet-management/EquipmentModel");
+    const EquipmentModel = require("../models/EquipmentModel");
     const AssignedChecklistModel =
-      require("../../models/fleet-management/MasterChecklistModel").AssignedChecklistModel;
-    const AssetCategoryModel = require("../../models/fixed-assests-management/AssetCategoryModel");
-    const AssetSubcategoryModel = require("../../models/fixed-assests-management/AssetSubcategoryModel");
+      require("../models/MasterChecklistModel").AssignedChecklistModel;
+    const AssetCategoryModel = require("../../../fixed-assets-service/src/models/AssetCategoryModel");
+    const AssetSubcategoryModel = require("../../../fixed-assets-service/src/models/AssetSubcategoryModel");
 
     let whereClause = {
       status: "Active",
@@ -1582,10 +1582,10 @@ const getAllAssignableEquipment = async (req, res) => {
 // Get assignable equipment categories for filtering
 const getAssignableEquipmentCategories = async (req, res) => {
   try {
-    const AssetCategoryModel = require("../../models/fixed-assests-management/AssetCategoryModel");
-    const AssetSubcategoryModel = require("../../models/fixed-assests-management/AssetSubcategoryModel");
-    const EquipmentModel = require("../../models/fleet-management/EquipmentModel");
-    const sequelize = require("../../config/dbSync");
+    const AssetCategoryModel = require("../../../fixed-assets-service/src/models/AssetCategoryModel");
+    const AssetSubcategoryModel = require("../../../fixed-assets-service/src/models/AssetSubcategoryModel");
+    const EquipmentModel = require("../models/EquipmentModel");
+    const sequelize = require("../../src/config/dbSync");
 
     // Get categories with their subcategories
     const categories = await AssetCategoryModel.findAll({
