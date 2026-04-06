@@ -18,7 +18,9 @@ const FormFieldModel = sequelize.define('tbl_form_fields', {
 
 FormFieldModel.belongsTo(TextFieldTypeModel, {
   foreignKey: 'text_field_type_id',
-  as: 'textFieldType'
+  as: 'textFieldType',
+  onDelete: 'SET NULL',
+  onUpdate: 'CASCADE',
 });
 
 module.exports = FormFieldModel;

@@ -6654,7 +6654,7 @@ const createEquipmentSwap = async (req, res) => {
     // Update allocation equipment if allocation_id exists
     if (allocation_id) {
       const ActiveAllocationEquipmentModel =
-        require("../../models/fleet-management/ActiveAllocationsOriginalModel").AllocationEquipmentModel;
+        require("../models/ActiveAllocationsOriginalModel").AllocationEquipmentModel;
 
       await ActiveAllocationEquipmentModel.update(
         {
@@ -9275,7 +9275,7 @@ const approveEquipmentSwap = async (req, res) => {
     );
 
     // Check if any pending swaps remain for this sales order
-    const EquipmentSwapModel = require("../../models/fleet-management/EquipmentSwapModel");
+    const EquipmentSwapModel = require("../models/EquipmentSwapModel");
 
     const equipmentSwaps = await EquipmentSwapModel.count({
       where: {
@@ -9339,7 +9339,7 @@ const rejectEquipmentSwap = async (req, res) => {
     );
 
     // Check if any pending swaps remain for this sales order
-    const EquipmentSwapModel = require("../../models/fleet-management/EquipmentSwapModel");
+    const EquipmentSwapModel = require("../models/EquipmentSwapModel");
 
     const equipmentSwaps = await EquipmentSwapModel.count({
       where: {

@@ -1,3 +1,4 @@
+// services/fixed-assets-service/src/index.js
 const express = require('express');
 const cors = require('cors');
 const path = require("path");

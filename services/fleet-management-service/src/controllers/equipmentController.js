@@ -13,6 +13,7 @@ const DepartmentModel = require("../../../hr-service/src/models/DepartmentModel"
 const AssetCapacityModel = require("../../../fixed-assets-service/src/models/AssetCapacityModel");
 const ManufacturerModel = require("../../../fixed-assets-service/src/models/ManufacturerModel");
 const ModelAssetModel = require("../../../fixed-assets-service/src/models/ModelAssetModel");
+const VehicleOwnerModel = require("../models/VehicleOwnerModel");
 
 const sourceDir = path.join(__dirname, "..", "..", "assets", "fonts");
 
@@ -532,39 +533,39 @@ const getEquipmentById = async (req, res) => {
     const equipment = await EquipmentModel.findByPk(serial_number, {
       include: [
         {
-          model: require("../../models/hr/employees/EmployeeModel"),
+          model: require("../../../hr-service/src/models/employees/EmployeeModel"),
           as: "employee",
         },
         {
-          model: require("../../models/fixed-assests-management/AssetModel"),
+          model: require("../../../fixed-assets-service/src/models/AssetModel"),
           as: "asset",
         },
         {
-          model: require("../../models/fleet-management/VehicleOwnerModel"),
+          model: VehicleOwnerModel,
           as: "owner",
         },
         {
-          model: require("../../models/fixed-assests-management/AssetCategoryModel"),
+          model: require("../../../fixed-assets-service/src/models/AssetCategoryModel"),
           as: "category",
         },
         {
-          model: require("../../models/fixed-assests-management/AssetSubcategoryModel"),
+          model: require("../../../fixed-assets-service/src/models/AssetSubcategoryModel"),
           as: "subcategory",
         },
         {
-          model: require("../../models/fixed-assests-management/AssetCapacityModel"),
+          model: require("../../../fixed-assets-service/src/models/AssetCapacityModel"),
           as: "capacity",
         },
         {
-          model: require("../../models/fixed-assests-management/ManufacturerModel"),
+          model: require("../../../fixed-assets-service/src/models/ManufacturerModel"),
           as: "manufacturer",
         },
         {
-          model: require("../../models/fixed-assests-management/ModelAssetModel"),
+          model: require("../../../fixed-assets-service/src/models/ModelAssetModel"),
           as: "model",
         },
         {
-          model: require("../../models/hr/DepartmentModel"),
+          model: require("../../../hr-service/src/models/DepartmentModel"),
           as: "department",
         },
       ],
@@ -606,39 +607,39 @@ const getAllEquipment = async (req, res) => {
       await EquipmentModel.findAndCountAll({
         include: [
           {
-            model: require("../../models/hr/employees/EmployeeModel"),
+            model: require("../../../hr-service/src/models/employees/EmployeeModel"),
             as: "employee",
           },
           {
-            model: require("../../models/fixed-assests-management/AssetModel"),
+            model: require("../../../fixed-assets-service/src/models/AssetModel"),
             as: "asset",
           },
           {
-            model: require("../../models/fleet-management/VehicleOwnerModel"),
+            model: VehicleOwnerModel,
             as: "owner",
           },
           {
-            model: require("../../models/fixed-assests-management/AssetCategoryModel"),
+            model: require("../../../fixed-assets-service/src/models/AssetCategoryModel"),
             as: "category",
           },
           {
-            model: require("../../models/fixed-assests-management/AssetSubcategoryModel"),
+            model: require("../../../fixed-assets-service/src/models/AssetSubcategoryModel"),
             as: "subcategory",
           },
           {
-            model: require("../../models/fixed-assests-management/AssetCapacityModel"),
+            model: require("../../../fixed-assets-service/src/models/AssetCapacityModel"),
             as: "capacity",
           },
           {
-            model: require("../../models/fixed-assests-management/ManufacturerModel"),
+            model: require("../../../fixed-assets-service/src/models/ManufacturerModel"),
             as: "manufacturer",
           },
           {
-            model: require("../../models/fixed-assests-management/ModelAssetModel"),
+            model: require("../../../fixed-assets-service/src/models/ModelAssetModel"),
             as: "model",
           },
           {
-            model: require("../../models/hr/DepartmentModel"),
+            model: require("../../../hr-service/src/models/DepartmentModel"),
             as: "department",
           },
         ],
@@ -691,7 +692,6 @@ const createEquipmentFromAsset = async (req, res) => {
     }
 
     // Find "Auto Xpert" owner with own_vehicle = true
-    const VehicleOwnerModel = require("../../models/fleet-management/VehicleOwnerModel");
     const autoXpertOwner = await VehicleOwnerModel.findOne({
       where: {
         name: "Auto Xpert",
@@ -895,24 +895,23 @@ const filterEquipment = async (req, res) => {
             as: "subcategory",
           },
           {
-            model: require("../../models/fleet-management/VehicleOwnerModel"),
+            model: VehicleOwnerModel,
             as: "owner",
-            attributes: ["vehicle_owner_id", "name", "own_vehicle"],
           },
           {
-            model: require("../../models/fixed-assests-management/AssetCapacityModel"),
+            model: require("../../../fixed-assets-service/src/models/AssetCapacityModel"),
             as: "capacity",
           },
           {
-            model: require("../../models/fixed-assests-management/ManufacturerModel"),
+            model: require("../../../fixed-assets-service/src/models/ManufacturerModel"),
             as: "manufacturer",
           },
           {
-            model: require("../../models/fixed-assests-management/ModelAssetModel"),
+            model: require("../../../fixed-assets-service/src/models/ModelAssetModel"),
             as: "model",
           },
           {
-            model: require("../../models/hr/DepartmentModel"),
+            model: require("../../../hr-service/src/models/DepartmentModel"),
             as: "department",
           },
         ],
@@ -996,32 +995,31 @@ const exportFilteredEquipmentToCSV = async (req, res) => {
           as: "asset",
         },
         {
-          model: require("../../models/fixed-assests-management/AssetCategoryModel"),
+          model: require("../../../fixed-assets-service/src/models/AssetCategoryModel"),
           as: "category",
         },
         {
-          model: require("../../models/fixed-assests-management/AssetSubcategoryModel"),
+          model: require("../../../fixed-assets-service/src/models/AssetSubcategoryModel"),
           as: "subcategory",
         },
         {
-          model: require("../../models/fleet-management/VehicleOwnerModel"),
+          model: VehicleOwnerModel,
           as: "owner",
-          attributes: ["vehicle_owner_id", "name", "own_vehicle"],
         },
         {
-          model: require("../../models/fixed-assests-management/AssetCapacityModel"),
+          model: require("../../../fixed-assets-service/src/models/AssetCapacityModel"),
           as: "capacity",
         },
         {
-          model: require("../../models/fixed-assests-management/ManufacturerModel"),
+          model: require("../../../fixed-assets-service/src/models/ManufacturerModel"),
           as: "manufacturer",
         },
         {
-          model: require("../../models/fixed-assests-management/ModelAssetModel"),
+          model: require("../../../fixed-assets-service/src/models/ModelAssetModel"),
           as: "model",
         },
         {
-          model: require("../../models/hr/DepartmentModel"),
+          model: require("../../../hr-service/src/models/DepartmentModel"),
           as: "department",
         },
       ],
@@ -1137,27 +1135,27 @@ const exportFilteredEquipmentToPDF = async (req, res) => {
           as: "asset",
         },
         {
-          model: require("../../models/fixed-assests-management/AssetCategoryModel"),
+          model: require("../../../fixed-assets-service/src/models/AssetCategoryModel"),
           as: "category",
         },
         {
-          model: require("../../models/fixed-assests-management/AssetSubcategoryModel"),
+          model: require("../../../fixed-assets-service/src/models/AssetSubcategoryModel"),
           as: "subcategory",
         },
         {
-          model: require("../../models/fixed-assests-management/AssetCapacityModel"),
+          model: require("../../../fixed-assets-service/src/models/AssetCapacityModel"),
           as: "capacity",
         },
         {
-          model: require("../../models/fixed-assests-management/ManufacturerModel"),
+          model: require("../../../fixed-assets-service/src/models/ManufacturerModel"),
           as: "manufacturer",
         },
         {
-          model: require("../../models/fixed-assests-management/ModelAssetModel"),
+          model: require("../../../fixed-assets-service/src/models/ModelAssetModel"),
           as: "model",
         },
         {
-          model: require("../../models/hr/DepartmentModel"),
+          model: require("../../../hr-service/src/models/DepartmentModel"),
           as: "department",
         },
       ],

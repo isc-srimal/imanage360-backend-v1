@@ -1,18 +1,18 @@
 const bcrypt = require("bcrypt");
 const sequelize = require("../config/dbSync");
-const Department = require("../../../hr-service/src/models/DepartmentModel");
-const Employee = require("../../../hr-service/src/models/employees/EmployeeModel");
-const Assets = require("../../../fixed-assets-service/src/models/AssetModel");
-const AssetCategory = require("../../../fixed-assets-service/src/models/AssetCategoryModel");
-const AssetSubCategory = require("../../../fixed-assets-service/src/models/AssetSubcategoryModel");
-const AssetCapacity = require("../../../fixed-assets-service/src/models/AssetCapacityModel");
-const AssetClassification = require("../../../fixed-assets-service/src/models/AssetClassificationModel");
-const LocationID = require("../../../fixed-assets-service/src/models/LocationIDModel");
-const CustodianID = require("../../../fixed-assets-service/src/models/CustodianIDModel");
-const CostCenterID = require("../../../fixed-assets-service/src/models/CostCenterIDModel");
-const SupplierID = require("../../../fixed-assets-service/src/models/SupplierIDModel");
-const ModelAssetModel = require("../../../fixed-assets-service/src/models/ModelAssetModel");
-const ManufacturerModel = require("../../../fixed-assets-service/src/models/ManufacturerModel");
+// const Department = require("../../../hr-service/src/models/DepartmentModel");
+const Employee = require("../models/EquipmentModel").associations.employee.target;
+const Assets = require("../models/EquipmentModel").associations.asset.target;
+const AssetCategory = require("../models/EquipmentModel").associations.category.target;
+const AssetSubCategory = require("../models/EquipmentModel").associations.subcategory.target;
+const AssetCapacity = require("../models/EquipmentModel").associations.capacity.target;
+const AssetClassification = require("../models/EquipmentModel").associations.classification.target;
+const LocationID = require("../models/EquipmentModel").associations.location.target;
+const CustodianID = require("../models/EquipmentModel").associations.custodian.target;
+const CostCenterID = require("../models/EquipmentModel").associations.costCenter.target;
+const SupplierID = require("../models/EquipmentModel").associations.supplier.target;
+const ModelAssetModel = require("../models/EquipmentModel").associations.model.target;
+const ManufacturerModel = require("../models/EquipmentModel").associations.manufacturer.target;
 // const EmployeeContractModel = require("../../../hr-service/src/models/employees/EmployeeContractModel");
 const DailySchedule = require("../models/DailyScheduleModel");
 const Equipment = require("../models/EquipmentModel");
@@ -853,44 +853,44 @@ const seedDatabase = async (syncOption = { alter: true }) => {
     // console.log("Employee contracts successfully seeded!");
 
     // Seed Department Data
-    const departments = [
-      {
-        departmentNo: 101,
-        departmentName: "IT Department",
-        departmentDescription:
-          "Responsible for managing all IT infrastructure and software development",
-        departmentHead: "John Doe",
-        location: "Headquarters, Colombo",
-        createdBy: "admin",
-        status: "Active",
-        staffName: "Jane Smith",
-      },
-      {
-        departmentNo: 102,
-        departmentName: "HR Department",
-        departmentDescription:
-          "Handles all human resources tasks including recruitment, payroll, and employee relations",
-        departmentHead: "Mary Johnson",
-        location: "Headquarters, Colombo",
-        createdBy: "admin",
-        status: "Active",
-        staffName: "David Lee",
-      },
-      {
-        departmentNo: 103,
-        departmentName: "Sales Department",
-        departmentDescription:
-          "Handles sales and customer relationship management",
-        departmentHead: "Robert Brown",
-        location: "Headquarters, Colombo",
-        createdBy: "admin",
-        status: "Active",
-        staffName: "Emily Davis",
-      },
-    ];
+    // const departments = [
+    //   {
+    //     departmentNo: 101,
+    //     departmentName: "IT Department",
+    //     departmentDescription:
+    //       "Responsible for managing all IT infrastructure and software development",
+    //     departmentHead: "John Doe",
+    //     location: "Headquarters, Colombo",
+    //     createdBy: "admin",
+    //     status: "Active",
+    //     staffName: "Jane Smith",
+    //   },
+    //   {
+    //     departmentNo: 102,
+    //     departmentName: "HR Department",
+    //     departmentDescription:
+    //       "Handles all human resources tasks including recruitment, payroll, and employee relations",
+    //     departmentHead: "Mary Johnson",
+    //     location: "Headquarters, Colombo",
+    //     createdBy: "admin",
+    //     status: "Active",
+    //     staffName: "David Lee",
+    //   },
+    //   {
+    //     departmentNo: 103,
+    //     departmentName: "Sales Department",
+    //     departmentDescription:
+    //       "Handles sales and customer relationship management",
+    //     departmentHead: "Robert Brown",
+    //     location: "Headquarters, Colombo",
+    //     createdBy: "admin",
+    //     status: "Active",
+    //     staffName: "Emily Davis",
+    //   },
+    // ];
 
-    await Department.bulkCreate(departments, { ignoreDuplicates: true });
-    console.log("Departments successfully seeded!");
+    // await Department.bulkCreate(departments, { ignoreDuplicates: true });
+    // console.log("Departments successfully seeded!");
 
     // Seed AssetCategoryModel
     const categories = await AssetCategory.bulkCreate(
@@ -1921,7 +1921,7 @@ const seedDatabase = async (syncOption = { alter: true }) => {
         capacity_id: capacities[0].capacity_id,
         location_name: locations[0].location_name,
         cost_center_name: costCenters[0].cost_center_name,
-        departmentName: departments[0].departmentName,
+        departmentName: "IT Department",
         custodian_name: custodians[0].custodian_name,
         acquisition_date: "2025-06-24",
         acquisition_cost: 1299.99,
@@ -1962,7 +1962,7 @@ const seedDatabase = async (syncOption = { alter: true }) => {
         capacity_id: capacities[0].capacity_id,
         location_name: locations[0].location_name,
         cost_center_name: costCenters[0].cost_center_name,
-        departmentName: departments[0].departmentName,
+        departmentName: "IT Department",
         custodian_name: custodians[0].custodian_name,
         acquisition_date: "2025-06-24",
         acquisition_cost: 1299.99,
@@ -2003,7 +2003,7 @@ const seedDatabase = async (syncOption = { alter: true }) => {
         capacity_id: capacities[0].capacity_id,
         location_name: locations[0].location_name,
         cost_center_name: costCenters[0].cost_center_name,
-        departmentName: departments[0].departmentName,
+        departmentName: "IT Department",
         custodian_name: custodians[0].custodian_name,
         acquisition_date: "2025-06-24",
         acquisition_cost: 1299.99,
@@ -2044,7 +2044,7 @@ const seedDatabase = async (syncOption = { alter: true }) => {
         capacity_id: capacities[0].capacity_id,
         location_name: locations[0].location_name,
         cost_center_name: costCenters[0].cost_center_name,
-        departmentName: departments[0].departmentName,
+        departmentName: "IT Department",
         custodian_name: custodians[0].custodian_name,
         acquisition_date: "2025-06-24",
         acquisition_cost: 1299.99,
@@ -2085,7 +2085,7 @@ const seedDatabase = async (syncOption = { alter: true }) => {
         capacity_id: capacities[0].capacity_id,
         location_name: locations[0].location_name,
         cost_center_name: costCenters[0].cost_center_name,
-        departmentName: departments[0].departmentName,
+        departmentName: "IT Department",
         custodian_name: custodians[0].custodian_name,
         acquisition_date: "2025-06-24",
         acquisition_cost: 1299.99,
@@ -2112,14 +2112,29 @@ const seedDatabase = async (syncOption = { alter: true }) => {
     ];
 
     const createdAssets = [];
-    for (const assetData of assetDataList) {
-      const [asset] = await Assets.findOrCreate({
-        where: { asset_number: assetData.asset_number },
-        defaults: assetData,
-      });
-      createdAssets.push(asset);
-    }
-    console.log("Assets successfully seeded!");
+for (const assetData of assetDataList) {
+  const [asset, created] = await Assets.findOrCreate({
+    where: { asset_number: assetData.asset_number },
+    defaults: assetData,
+  });
+  createdAssets.push(asset);
+  console.log(`Asset ${asset.asset_number} -> asset_id: ${asset.asset_id}, created: ${created}`);
+}
+
+// Verify assets have valid IDs before seeding equipment
+if (createdAssets.some(a => !a.asset_id)) {
+  throw new Error("Some assets were not created properly — missing asset_id");
+}
+
+    // const createdAssets = [];
+    // for (const assetData of assetDataList) {
+    //   const [asset] = await Assets.findOrCreate({
+    //     where: { asset_number: assetData.asset_number },
+    //     defaults: assetData,
+    //   });
+    //   createdAssets.push(asset);
+    // }
+    // console.log("Assets successfully seeded!");
 
     // ---- Also fix VehicleOwner, OperatorType, ServiceEntryType, JobLocation, AttachmentLocation ----
     // Replace bulkCreate+ignoreDuplicates with findOrCreate for each:
@@ -2218,7 +2233,7 @@ const seedDatabase = async (syncOption = { alter: true }) => {
           description: assetRef.description || "N/A",
           year_of_manufacture:
             assetRef.year_of_manufacture || new Date().getFullYear(),
-          departmentName: departments[0].departmentName,
+          departmentName: "IT Department",
           employeeId: d.employeeId,
           barcode: assetRef.barcode,
           rfid_tag: assetRef.rfid_tag,
