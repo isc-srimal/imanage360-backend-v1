@@ -9,7 +9,7 @@ const PdfPrinter = require("pdfmake");
 const path = require("path");
 const multer = require("multer");
 const fs = require("fs");
-const DepartmentModel = require("../../../hr-service/src/models/DepartmentModel");
+const DepartmentModel = require("../models/DepartmentModel");
 const AssetCapacityModel = require("../../../fixed-assets-service/src/models/AssetCapacityModel");
 const ManufacturerModel = require("../../../fixed-assets-service/src/models/ManufacturerModel");
 const ModelAssetModel = require("../../../fixed-assets-service/src/models/ModelAssetModel");
@@ -565,7 +565,7 @@ const getEquipmentById = async (req, res) => {
           as: "model",
         },
         {
-          model: require("../../../hr-service/src/models/DepartmentModel"),
+          model: require("../models/DepartmentModel"),
           as: "department",
         },
       ],
@@ -639,7 +639,7 @@ const getAllEquipment = async (req, res) => {
             as: "model",
           },
           {
-            model: require("../../../hr-service/src/models/DepartmentModel"),
+            model: require("../models/DepartmentModel"),
             as: "department",
           },
         ],
@@ -911,7 +911,7 @@ const filterEquipment = async (req, res) => {
             as: "model",
           },
           {
-            model: require("../../../hr-service/src/models/DepartmentModel"),
+            model: require("../models/DepartmentModel"),
             as: "department",
           },
         ],
@@ -1019,7 +1019,7 @@ const exportFilteredEquipmentToCSV = async (req, res) => {
           as: "model",
         },
         {
-          model: require("../../../hr-service/src/models/DepartmentModel"),
+          model: require("../models/DepartmentModel"),
           as: "department",
         },
       ],
@@ -1155,7 +1155,7 @@ const exportFilteredEquipmentToPDF = async (req, res) => {
           as: "model",
         },
         {
-          model: require("../../../hr-service/src/models/DepartmentModel"),
+          model: require("../models/DepartmentModel"),
           as: "department",
         },
       ],

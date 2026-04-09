@@ -1917,6 +1917,25 @@ const seedDatabase = async (syncOption = { alter: true }) => {
     });
     console.log("Employee Contract Template Details successfully seeded!");
 
+    // Seed GatePassLocationModel
+    const gatePass = await GatePassLocationModel.bulkCreate(
+      [
+        {
+          gatePassLocation: "Doha",
+          status: "Active",
+        },
+        {
+          gatePassLocation: "Raas Laffan",
+          status: "Active",
+        },
+        {
+          gatePassLocation: "Aljazeera",
+          status: "Active",
+        },
+      ],
+      { ignoreDuplicates: true },
+    );
+
     console.log(
       "Human Resources Database seeded successfully with ITEQ Solution data.",
     );

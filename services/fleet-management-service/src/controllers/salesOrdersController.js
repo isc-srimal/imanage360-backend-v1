@@ -20,7 +20,7 @@ const sourceDir = path.join(__dirname, "..", "..", "assets", "fonts");
 const uploadLPOEndDateSupportDocument = multer({
   storage: multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, "public/uploads/lpoEndDateSupportAttachmentDocuments/");
+      cb(null, "services/fleet-management-service/public/uploads/lpoEndDateSupportAttachmentDocuments/");
     },
     filename: (req, file, cb) => {
       const ext = path.extname(file.originalname);
@@ -34,7 +34,7 @@ const uploadLPOEndDateSupportDocument = multer({
 const uploadSupportDocument = multer({
   storage: multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, "public/uploads/supportAttachmentDocuments/");
+      cb(null, "services/fleet-management-service/public/uploads/supportAttachmentDocuments/");
     },
     filename: (req, file, cb) => {
       const ext = path.extname(file.originalname);
