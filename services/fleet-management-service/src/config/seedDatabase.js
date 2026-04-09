@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const sequelize = require("../config/dbSync");
-// const Department = require("../../../hr-service/src/models/DepartmentModel");
+const Department = require("../models/DepartmentModel");
 const Employee = require("../models/EquipmentModel").associations.employee.target;
 const Assets = require("../models/EquipmentModel").associations.asset.target;
 const AssetCategory = require("../models/EquipmentModel").associations.category.target;
@@ -853,44 +853,44 @@ const seedDatabase = async (syncOption = { alter: true }) => {
     // console.log("Employee contracts successfully seeded!");
 
     // Seed Department Data
-    // const departments = [
-    //   {
-    //     departmentNo: 101,
-    //     departmentName: "IT Department",
-    //     departmentDescription:
-    //       "Responsible for managing all IT infrastructure and software development",
-    //     departmentHead: "John Doe",
-    //     location: "Headquarters, Colombo",
-    //     createdBy: "admin",
-    //     status: "Active",
-    //     staffName: "Jane Smith",
-    //   },
-    //   {
-    //     departmentNo: 102,
-    //     departmentName: "HR Department",
-    //     departmentDescription:
-    //       "Handles all human resources tasks including recruitment, payroll, and employee relations",
-    //     departmentHead: "Mary Johnson",
-    //     location: "Headquarters, Colombo",
-    //     createdBy: "admin",
-    //     status: "Active",
-    //     staffName: "David Lee",
-    //   },
-    //   {
-    //     departmentNo: 103,
-    //     departmentName: "Sales Department",
-    //     departmentDescription:
-    //       "Handles sales and customer relationship management",
-    //     departmentHead: "Robert Brown",
-    //     location: "Headquarters, Colombo",
-    //     createdBy: "admin",
-    //     status: "Active",
-    //     staffName: "Emily Davis",
-    //   },
-    // ];
+    const departments = [
+      {
+        departmentNo: 101,
+        departmentName: "IT Department",
+        departmentDescription:
+          "Responsible for managing all IT infrastructure and software development",
+        departmentHead: "John Doe",
+        location: "Headquarters, Colombo",
+        createdBy: "admin",
+        status: "Active",
+        staffName: "Jane Smith",
+      },
+      {
+        departmentNo: 102,
+        departmentName: "HR Department",
+        departmentDescription:
+          "Handles all human resources tasks including recruitment, payroll, and employee relations",
+        departmentHead: "Mary Johnson",
+        location: "Headquarters, Colombo",
+        createdBy: "admin",
+        status: "Active",
+        staffName: "David Lee",
+      },
+      {
+        departmentNo: 103,
+        departmentName: "Sales Department",
+        departmentDescription:
+          "Handles sales and customer relationship management",
+        departmentHead: "Robert Brown",
+        location: "Headquarters, Colombo",
+        createdBy: "admin",
+        status: "Active",
+        staffName: "Emily Davis",
+      },
+    ];
 
-    // await Department.bulkCreate(departments, { ignoreDuplicates: true });
-    // console.log("Departments successfully seeded!");
+    await Department.bulkCreate(departments, { ignoreDuplicates: true });
+    console.log("Departments successfully seeded!");
 
     // Seed AssetCategoryModel
     const categories = await AssetCategory.bulkCreate(
@@ -1921,7 +1921,7 @@ const seedDatabase = async (syncOption = { alter: true }) => {
         capacity_id: capacities[0].capacity_id,
         location_name: locations[0].location_name,
         cost_center_name: costCenters[0].cost_center_name,
-        departmentName: "IT Department",
+        departmentName: departments[0].departmentName,
         custodian_name: custodians[0].custodian_name,
         acquisition_date: "2025-06-24",
         acquisition_cost: 1299.99,
@@ -1962,7 +1962,7 @@ const seedDatabase = async (syncOption = { alter: true }) => {
         capacity_id: capacities[0].capacity_id,
         location_name: locations[0].location_name,
         cost_center_name: costCenters[0].cost_center_name,
-        departmentName: "IT Department",
+        departmentName: departments[0].departmentName,
         custodian_name: custodians[0].custodian_name,
         acquisition_date: "2025-06-24",
         acquisition_cost: 1299.99,
@@ -2003,7 +2003,7 @@ const seedDatabase = async (syncOption = { alter: true }) => {
         capacity_id: capacities[0].capacity_id,
         location_name: locations[0].location_name,
         cost_center_name: costCenters[0].cost_center_name,
-        departmentName: "IT Department",
+        departmentName: departments[0].departmentName,
         custodian_name: custodians[0].custodian_name,
         acquisition_date: "2025-06-24",
         acquisition_cost: 1299.99,
@@ -2044,7 +2044,7 @@ const seedDatabase = async (syncOption = { alter: true }) => {
         capacity_id: capacities[0].capacity_id,
         location_name: locations[0].location_name,
         cost_center_name: costCenters[0].cost_center_name,
-        departmentName: "IT Department",
+        departmentName: departments[0].departmentName,
         custodian_name: custodians[0].custodian_name,
         acquisition_date: "2025-06-24",
         acquisition_cost: 1299.99,
@@ -2085,7 +2085,7 @@ const seedDatabase = async (syncOption = { alter: true }) => {
         capacity_id: capacities[0].capacity_id,
         location_name: locations[0].location_name,
         cost_center_name: costCenters[0].cost_center_name,
-        departmentName: "IT Department",
+        departmentName: departments[0].departmentName,
         custodian_name: custodians[0].custodian_name,
         acquisition_date: "2025-06-24",
         acquisition_cost: 1299.99,
@@ -2233,7 +2233,7 @@ if (createdAssets.some(a => !a.asset_id)) {
           description: assetRef.description || "N/A",
           year_of_manufacture:
             assetRef.year_of_manufacture || new Date().getFullYear(),
-          departmentName: "IT Department",
+          departmentName: departments[0].departmentName,
           employeeId: d.employeeId,
           barcode: assetRef.barcode,
           rfid_tag: assetRef.rfid_tag,

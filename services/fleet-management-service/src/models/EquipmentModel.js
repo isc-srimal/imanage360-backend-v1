@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../../src/config/dbSync");
+const DepartmentModel = require("./DepartmentModel");
 const EmployeeModel = sequelize.define(
   "tbl_employees",
   {
@@ -1042,10 +1043,10 @@ const AssetModel = sequelize.define('tbl_assets', {
     departmentName: {
         type: DataTypes.STRING(255),
         allowNull: true,
-        // references: {
-        //     model: DepartmentModel,
-        //     key: 'departmentName',
-        // },
+        references: {
+            model: DepartmentModel,
+            key: 'departmentName',
+        },
     },
     custodian_name: {
         type: DataTypes.STRING(255),
@@ -1270,10 +1271,10 @@ const EquipmentModel = sequelize.define(
     departmentName: {
       type: DataTypes.STRING(255),
       allowNull: true,
-      // references: {
-      //   model: DepartmentModel,
-      //   key: "departmentName",
-      // },
+      references: {
+        model: DepartmentModel,
+        key: "departmentName",
+      },
     },
     // customer_name: {
     //   type: DataTypes.STRING(255),
@@ -1427,13 +1428,13 @@ VehicleOwnerModel.hasMany(EquipmentModel, {
   as: "equipment",
 });
 
-// EquipmentModel.belongsTo(DepartmentModel, {
-//   foreignKey: "departmentName",
-//   as: "department",
-// });
-// DepartmentModel.hasMany(EquipmentModel, {
-//   foreignKey: "departmentName",
-//   as: "equipment",
-// });
+EquipmentModel.belongsTo(DepartmentModel, {
+  foreignKey: "departmentName",
+  as: "department",
+});
+DepartmentModel.hasMany(EquipmentModel, {
+  foreignKey: "departmentName",
+  as: "equipment",
+});
 
 module.exports = EquipmentModel;
