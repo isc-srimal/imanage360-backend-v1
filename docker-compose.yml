@@ -1,4 +1,3 @@
-# docker-compose.yml
 version: '3.8'
 
 services:
@@ -6,77 +5,103 @@ services:
   # ── Databases ──────────────────────────────────────────────────────────────
   mysql-user:
     image: mysql:8.0
+    restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: user_db
-    ports:
-      - "3307:3306"
     volumes:
       - mysql_user_data:/var/lib/mysql
     networks:
       - imanage360
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p${DB_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   mysql-hr:
     image: mysql:8.0
+    restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: hr_db
-    ports:
-      - "3308:3306"
     volumes:
       - mysql_hr_data:/var/lib/mysql
     networks:
       - imanage360
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p${DB_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   mysql-sales-crm:
     image: mysql:8.0
+    restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: sales_crm_db
-    ports:
-      - "3309:3306"
     volumes:
       - mysql_crm_data:/var/lib/mysql
     networks:
       - imanage360
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p${DB_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   mysql-fleet-management:
     image: mysql:8.0
+    restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: fleet_management_db
-    ports:
-      - "3310:3306"
     volumes:
       - mysql_fleet_data:/var/lib/mysql
     networks:
       - imanage360
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p${DB_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   mysql-fixed-assets:
     image: mysql:8.0
+    restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: fixed_assets_db
-    ports:
-      - "3311:3306"
     volumes:
       - mysql_assets_data:/var/lib/mysql
     networks:
       - imanage360
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p${DB_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   # ── Services ───────────────────────────────────────────────────────────────
   api-gateway:
     build: ./api-gateway
+    restart: unless-stopped
     ports:
       - "4000:4000"
     environment:
+      - PORT=4000
+      - JWT_SECRET=${JWT_SECRET}
+      - FRONTEND_URL=${FRONTEND_URL}
+      - BACKEND_URL=${BACKEND_URL}
       - USER_SERVICE_URL=http://user-management-service:4001
       - HR_SERVICE_URL=http://hr-service:4002
       - CRM_SERVICE_URL=http://sales-crm-service:4003
       - FLEET_SERVICE_URL=http://fleet-management-service:4004
       - ASSETS_SERVICE_URL=http://fixed-assets-service:4005
-      - JWT_SECRET=A5dfg+74Jgfkjng-9j34klJJK!bh34kjfdS4#vytZjk94qwv-234klhl5bCzxlwpjp
-      - FRONTEND_URL=http://localhost:3000
+      - VAPID_PUBLIC_KEY=${GATEWAY_VAPID_PUBLIC_KEY}
+      - VAPID_PRIVATE_KEY=${GATEWAY_VAPID_PRIVATE_KEY}
+      - VAPID_EMAIL=${VAPID_EMAIL}
     depends_on:
       - user-management-service
       - hr-service
@@ -88,82 +113,111 @@ services:
 
   user-management-service:
     build: ./services/user-management-service
+    restart: unless-stopped
     ports:
       - "4001:4001"
     environment:
       - PORT=4001
-      - DB_HOST=mysql-user
-      - DB_PORT=3306
-      - DB_NAME=user_db
-      - DB_USER=root
-      - DB_PASSWORD=1996
-      - JWT_SECRET=A5dfg+74Jgfkjng-9j34klJJK!bh34kjfdS4#vytZjk94qwv-234klhl5bCzxlwpjp
+      - USER_DB_HOST=mysql-user
+      - USER_DB_PORT=3306
+      - USER_DB_NAME=user_db
+      - USER_DB_USER=root
+      - USER_DB_PASSWORD=${DB_PASSWORD}
+      - JWT_SECRET=${JWT_SECRET}
+      - VAPID_PUBLIC_KEY=${USER_VAPID_PUBLIC_KEY}
+      - VAPID_PRIVATE_KEY=${USER_VAPID_PRIVATE_KEY}
+      - VAPID_EMAIL=${VAPID_EMAIL}
     depends_on:
-      - mysql-user
+      mysql-user:
+        condition: service_healthy
     networks:
       - imanage360
 
   hr-service:
     build: ./services/hr-service
+    restart: unless-stopped
     ports:
       - "4002:4002"
     environment:
       - PORT=4002
-      - DB_HOST=mysql-hr
-      - DB_PORT=3306
-      - DB_NAME=hr_db
-      - DB_USER=root
-      - DB_PASSWORD=1996
+      - HR_DB_HOST=mysql-hr
+      - HR_DB_PORT=3306
+      - HR_DB_NAME=hr_db
+      - HR_DB_USER=root
+      - HR_DB_PASSWORD=${DB_PASSWORD}
+      - JWT_SECRET=${JWT_SECRET}
+      - VAPID_PUBLIC_KEY=${HR_VAPID_PUBLIC_KEY}
+      - VAPID_PRIVATE_KEY=${HR_VAPID_PRIVATE_KEY}
+      - VAPID_EMAIL=${VAPID_EMAIL}
     depends_on:
-      - mysql-hr
+      mysql-hr:
+        condition: service_healthy
     networks:
       - imanage360
 
   sales-crm-service:
     build: ./services/sales-crm-service
+    restart: unless-stopped
     ports:
       - "4003:4003"
     environment:
       - PORT=4003
-      - DB_HOST=mysql-sales-crm
-      - DB_PORT=3306
-      - DB_NAME=sales_crm_db
-      - DB_USER=root
-      - DB_PASSWORD=1996
+      - SALES_CRM_DB_HOST=mysql-sales-crm
+      - SALES_CRM_DB_PORT=3306
+      - SALES_CRM_DB_NAME=sales_crm_db
+      - SALES_CRM_DB_USER=root
+      - SALES_CRM_DB_PASSWORD=${DB_PASSWORD}
+      - JWT_SECRET=${JWT_SECRET}
+      - VAPID_PUBLIC_KEY=${CRM_VAPID_PUBLIC_KEY}
+      - VAPID_PRIVATE_KEY=${CRM_VAPID_PRIVATE_KEY}
+      - VAPID_EMAIL=${VAPID_EMAIL}
     depends_on:
-      - mysql-sales-crm
+      mysql-sales-crm:
+        condition: service_healthy
     networks:
       - imanage360
 
   fleet-management-service:
     build: ./services/fleet-management-service
+    restart: unless-stopped
     ports:
       - "4004:4004"
     environment:
       - PORT=4004
-      - DB_HOST=mysql-fleet-management
-      - DB_PORT=3306
-      - DB_NAME=fleet_management_db
-      - DB_USER=root
-      - DB_PASSWORD=1996
+      - FLEET_DB_HOST=mysql-fleet-management
+      - FLEET_DB_PORT=3306
+      - FLEET_DB_NAME=fleet_management_db
+      - FLEET_DB_USER=root
+      - FLEET_DB_PASSWORD=${DB_PASSWORD}
+      - JWT_SECRET=${JWT_SECRET}
+      - VAPID_PUBLIC_KEY=${FLEET_VAPID_PUBLIC_KEY}
+      - VAPID_PRIVATE_KEY=${FLEET_VAPID_PRIVATE_KEY}
+      - VAPID_EMAIL=${VAPID_EMAIL}
     depends_on:
-      - mysql-fleet-management
+      mysql-fleet-management:
+        condition: service_healthy
     networks:
       - imanage360
 
   fixed-assets-service:
     build: ./services/fixed-assets-service
+    restart: unless-stopped
     ports:
       - "4005:4005"
     environment:
       - PORT=4005
-      - DB_HOST=mysql-fixed-assets
-      - DB_PORT=3306
-      - DB_NAME=fixed_assets_db
-      - DB_USER=root
-      - DB_PASSWORD=1996
+      - ASSETS_DB_HOST=mysql-fixed-assets
+      - ASSETS_DB_PORT=3306
+      - ASSETS_DB_NAME=fixed_assets_db
+      - ASSETS_DB_USER=root
+      - ASSETS_DB_PASSWORD=${DB_PASSWORD}
+      - JWT_SECRET=${JWT_SECRET}
+      - VAPID_PUBLIC_KEY=${ASSETS_VAPID_PUBLIC_KEY}
+      - VAPID_PRIVATE_KEY=${ASSETS_VAPID_PRIVATE_KEY}
+      - VAPID_EMAIL=${VAPID_EMAIL}
     depends_on:
-      - mysql-fixed-assets
+      mysql-fixed-assets:
+        condition: service_healthy
     networks:
       - imanage360
 
