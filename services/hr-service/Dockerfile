@@ -1,8 +1,13 @@
 # services/hr-service/Dockerfile
-FROM node:18-alpine
+FROM node:20-alpine
+
 WORKDIR /app
+
 COPY package*.json ./
-RUN npm install --production
+RUN npm ci --omit=dev
+
 COPY . .
+
 EXPOSE 4002
+
 CMD ["node", "src/index.js"]
